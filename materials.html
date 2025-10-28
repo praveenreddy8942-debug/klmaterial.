@@ -1,43 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Study Materials</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #f8faff, #e8f1ff);
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #0d47a1;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .navbar a {
+      color: white;
+      margin: 15px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      color: #0d47a1;
+    }
+
+    .subjects {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin: 40px auto;
+      max-width: 1200px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h3 {
+      color: #0d47a1;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .download-btn {
+      background-color: #0d47a1;
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .download-btn:hover {
+      background-color: #1565c0;
+    }
+
+    footer {
+      background-color: #0d47a1;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <h1 class="title">📚 Study Materials</h1>
-  </header>
 
-  <section class="materials-section">
-    <h2 class="section-title">Available Subjects</h2>
-    <div class="materials-container">
-      <div class="subject-card">
-        <h3>Basic Electrical and Electronic Circuits (BEEC)</h3>
-        <a href="materials/beec.pdf" download>Download</a>
-      </div>
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="materials.html" style="color: yellow;">Materials</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
-      <div class="subject-card">
-        <h3>Problem Solving Through C</h3>
-        <a href="materials/psc.pdf" download>Download</a>
-      </div>
+  <h1>Available Subjects</h1>
 
-      <div class="subject-card">
-        <h3>Digital System Design (DSD)</h3>
-        <a href="materials/dsd.pdf" download>Download</a>
-      </div>
-
-      <div class="subject-card">
-        <h3>Discrete Mathematics (DM)</h3>
-        <a href="materials/dm.pdf" download>Download</a>
-      </div>
+  <div class="subjects">
+    <div class="card">
+      <h3>Basic Electrical and Electronic Circuits (BEEC)</h3>
+      <a class="download-btn" href="BEEC.pdf" target="_blank">Download</a>
     </div>
-  </section>
 
-  <footer class="footer">
-    <p>© 2025 Praveen Reddy | All rights reserved.</p>
+    <div class="card">
+      <h3>Problem Solving Through C</h3>
+      <a class="download-btn" href="C.pdf" target="_blank">Download</a>
+    </div>
+
+    <div class="card">
+      <h3>Digital System Design (DSD)</h3>
+      <a class="download-btn" href="DSD.pdf" target="_blank">Download</a>
+    </div>
+
+    <div class="card">
+      <h3>Discrete Mathematics (DM)</h3>
+      <a class="download-btn" href="DM.pdf" target="_blank">Download</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Praveen Reddy | All rights reserved.
   </footer>
+
 </body>
 </html>
