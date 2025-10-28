@@ -1,101 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Materials | Praveen Reddy</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <canvas id="stars"></canvas>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <span class="bolt">⚡</span>
-        <a href="index.html" class="brand-name">Praveen Reddy</a>
-      </div>
-      <nav class="main-nav" id="mainNav">
-        <a href="index.html">Home</a>
-        <a href="materials.html" class="active">Materials</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <button id="navToggle" aria-label="Toggle menu">☰</button>
+<body class="materials-page">
+  <header class="navbar">
+    <div class="nav-container">
+      <h1 class="logo">⚡ Praveen Reddy</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="materials.html" class="active">Materials</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
-  <main class="container main-content">
-    <h1 class="materials-title fade-in">📘 Study Materials</h1>
+  <main class="materials-content">
+    <h2 class="page-title">📘 Study Materials</h2>
 
-    <section class="materials-list" aria-label="List of study materials">
-      <!-- Card 1 -->
-      <article class="subject-card fade-in">
-        <h3>Problem Solving Through C</h3>
-        <p class="desc">Complete notes and examples.</p>
-        <div class="card-actions">
-          <a href="C.pdf" target="_blank" class="download-btn">Download Notes</a>
-        </div>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="subject-card fade-in">
-        <h3>Basic Electrical and Electronic Circuits</h3>
-        <p class="desc">Lecture notes & solved examples.</p>
-        <div class="card-actions">
-          <a href="BEEC.pdf" target="_blank" class="download-btn">Download Notes</a>
-        </div>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="subject-card fade-in">
-        <h3>Discrete Mathematics</h3>
-        <p class="desc">CO-wise PDFs for quick revision.</p>
-        <div class="card-actions co-buttons">
-          <a href="CO-1 Material_efecb4d79b6e84268fcdc4d.pdf" target="_blank">CO-1</a>
-          <a href="CO-2 Material_df4a0e9c5868f21eff8422b.pdf" target="_blank">CO-2</a>
-          <a href="CO-3 Material_884f340d5afd6fb948de639.pdf" target="_blank">CO-3</a>
-        </div>
-      </article>
-
-      <!-- Card 4 -->
-      <article class="subject-card fade-in">
-        <h3>Digital System Design</h3>
-        <p class="desc">Full notes + terminal Qs.</p>
-        <div class="card-actions co-buttons">
-          <a href="DSD CO-2 Terminal Questions.pdf" target="_blank">CO-2 Qs</a>
-          <a href="DSD.pdf" target="_blank">Full Notes</a>
-        </div>
-      </article>
-
-      <!-- Card 5 -->
-      <article class="subject-card fade-in">
-        <h3>CTSD / Other</h3>
-        <p class="desc">Combined notes and exam practice.</p>
-        <div class="card-actions">
-          <a href="CTSD_FULL_NOTES.pdf" target="_blank" class="download-btn">Download Full Notes</a>
-        </div>
-      </article>
-
-      <!-- Additional files -->
-      <article class="subject-card fade-in">
-        <h3>Extra PDFs & Q/A</h3>
-        <ul class="file-list">
-          <li><a href="CO-1 terminal questions and answers.pdf" target="_blank">CO-1 terminal questions and answers</a></li>
-          <li><a href="InSem-I Updated CO1 & CO2 Notes_unlocked.pdf" target="_blank">InSem-I Updated CO1 & CO2 Notes</a></li>
-          <li><a href="DM.pdf" target="_blank">DM.pdf</a></li>
-        </ul>
-      </article>
-
-    </section>
-
-    <footer class="footer fade-in">
-      © 2025 Praveen Reddy | All rights reserved.
-    </footer>
+    <div class="subject"><h3>BEEC</h3><a href="BEEC.pdf" class="btn">Download Notes</a></div>
+    <div class="subject"><h3>Problem Solving Through C</h3><a href="C.pdf" class="btn">Download Notes</a></div>
+    <div class="subject"><h3>CO-1</h3>
+      <a href="CO-1 Material_efecb4d79b6e84268fcdc4d4b0b9b7e0.pdf" class="btn">Material</a>
+      <a href="CO-1 terminal questions and answers.pdf" class="btn">Q&A</a></div>
+    <div class="subject"><h3>CO-2</h3><a href="CO-2 Material_df4a0e9c5868f21e1ff8422b9b56da9d.pdf" class="btn">Material</a></div>
+    <div class="subject"><h3>CO-3</h3><a href="CO-3 Material_884f340d5afd6fb948de639b2f6f89c4.pdf" class="btn">Material</a></div>
+    <div class="subject"><h3>CTSD</h3><a href="CTSD_FULL_NOTES.pdf" class="btn">Full Notes</a></div>
+    <div class="subject"><h3>Discrete Mathematics</h3><a href="DM.pdf" class="btn">Download Notes</a></div>
+    <div class="subject"><h3>Digital System Design</h3>
+      <a href="DSD CO-2 Terminal Questions.pdf" class="btn">CO-2 Qs</a>
+      <a href="DSD.pdf" class="btn">Full Notes</a></div>
+    <div class="subject"><h3>InSem-I Updated CO1 & CO2 Notes</h3><a href="InSem-I Updated CO1 & CO2 Notes_unlocked.pdf" class="btn">Download</a></div>
   </main>
 
-  <button id="backToTop" title="Back to top">↑</button>
-
+  <footer>
+    <p>© 2025 Praveen Reddy | All rights reserved.</p>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>
