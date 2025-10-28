@@ -66,3 +66,23 @@ if (typingText) {
   }
   type();
 }
+// 🌟 Animate subject cards on scroll
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".subject-card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  cards.forEach((card, index) => {
+    card.style.transitionDelay = `${index * 0.1}s`; // slight delay for each
+    observer.observe(card);
+  });
+});
