@@ -1,58 +1,76 @@
-/* Materials Page */
-.materials-page {
-  background: radial-gradient(circle at 20% 20%, #001d3d, #000814);
+/* General */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
   color: white;
-  min-height: 100vh;
-  padding-top: 90px;
+  background: radial-gradient(circle at 20% 20%, #001d3d, #000814);
 }
 
-.page-title {
+/* Centered Navbar */
+.center-nav {
   text-align: center;
-  color: #00bfff;
-  margin-bottom: 40px;
-  font-size: 2em;
-  animation: fadeInUp 1s ease;
-}
-
-.subjects-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-  padding: 0 20px 60px;
-}
-
-.subject-card {
-  width: 90%;
-  max-width: 700px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 191, 255, 0.2);
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
-  text-align: center;
-  transition: 0.3s;
-  animation: fadeInUp 1s ease;
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  backdrop-filter: blur(10px);
 }
 
-.subject-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(0, 191, 255, 0.5);
+.center-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.subject-card h2 {
-  color: #00bfff;
-  margin-bottom: 10px;
-}
-
-.subject-card p {
-  color: #ccc;
-  margin-bottom: 20px;
-  font-size: 0.95em;
-}
-
-.subject-card .btn {
+.center-nav li {
   display: inline-block;
+  margin: 0 20px;
+}
+
+.center-nav a {
+  color: #00bfff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+
+.center-nav a:hover,
+.center-nav a.active {
+  color: white;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding-top: 140px;
+}
+
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00bfff;
+  box-shadow: 0 0 25px rgba(0, 191, 255, 0.6);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 2em;
+  color: #00bfff;
+  margin: 10px 0;
+}
+
+.hero p {
+  font-size: 1.1em;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.btn {
   background: linear-gradient(90deg, #00bfff, #0080ff);
   color: white;
   padding: 10px 25px;
@@ -62,19 +80,26 @@
   transition: 0.3s;
 }
 
-.subject-card .btn:hover {
+.btn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 15px #00bfff;
 }
 
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  color: #aaa;
+  font-size: 0.9em;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-  .subject-card {
-    width: 95%;
-    padding: 20px;
+  .profile-pic {
+    width: 140px;
+    height: 140px;
   }
-
-  .page-title {
+  .hero h1 {
     font-size: 1.6em;
   }
 }
