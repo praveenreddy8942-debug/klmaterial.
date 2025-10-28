@@ -197,3 +197,52 @@ footer {
   color: #aaa;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+/* ===== Page Styles for About & Contact ===== */
+.page-content {
+  max-width: 900px;
+  margin: 60px auto;
+  text-align: center;
+  color: #fff;
+}
+
+.page-content h1 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #66b3ff;
+}
+
+.about-card, .contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 15px rgba(102, 179, 255, 0.15);
+  line-height: 1.7;
+}
+
+.about-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #66b3ff;
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.contact-info li {
+  margin: 10px 0;
+}
+
+.contact-info a {
+  color: #66b3ff;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
