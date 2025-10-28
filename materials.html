@@ -1,56 +1,88 @@
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-  import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Materials | Praveen Reddy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <h2>📘 Study Hub</h2>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="materials.html" class="active">Materials</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "cse-materials.firebaseapp.com",
-    projectId: "cse-materials",
-    storageBucket: "cse-materials.firebasestorage.app",
-    messagingSenderId: "YOUR_ID",
-    appId: "YOUR_APP_ID"
-  };
+  <main class="materials-container">
+    <h1>📚 CSE Study Materials</h1>
+    <div id="materials-list">Loading materials...</div>
+  </main>
 
-  const app = initializeApp(firebaseConfig);
-  const storage = getStorage(app);
+  <footer>
+    <p>© 2025 Praveen Reddy | All rights reserved.</p>
+  </footer>
 
-  const materialsList = document.getElementById("materials-list");
-  const storageRef = ref(storage);
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-  // 🔹 Subject mapping
-  const subjects = {
-    "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
-    "DM": "Discrete Mathematics (DM)",
-    "DSD": "Digital System Design (DSD)",
-    "CTSD": "C Programming & Software Design",
-    "PSC": "Problem Solving Through C"  // use PSC instead of C
-  };
+    // ✅ Replace with your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "cse-materials.firebaseapp.com",
+      projectId: "cse-materials",
+      storageBucket: "cse-materials.appspot.com", // ✅ must end with .appspot.com
+      messagingSenderId: "YOUR_ID",
+      appId: "YOUR_APP_ID"
+    };
 
-  listAll(storageRef)
-    .then((res) => {
-      materialsList.innerHTML = "";
-      const grouped = {};
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
 
-      res.items.forEach((itemRef) => {
-        const name = itemRef.name.toUpperCase();
+    const materialsList = document.getElementById("materials-list");
+    const storageRef = ref(storage);
 
-        // Match only if filename starts with key + "-" (avoids false matches)
-        const matchKey = Object.keys(subjects).find(
-          key => name.startsWith(key + "-") || name.includes(key + "-CO")
-        );
+    // 🔹 Subject mapping
+    const subjects = {
+      "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
+      "DM": "Discrete Mathematics (DM)",
+      "DSD": "Digital System Design (DSD)",
+      "CTSD": "C Programming & Software Design",
+      "PSC": "Problem Solving Through C"
+    };
 
-        const subject = matchKey ? subjects[matchKey] : "Other Materials";
-        if (!grouped[subject]) grouped[subject] = [];
-        grouped[subject].push(itemRef);
-      });
+    async function loadMaterials() {
+      try {
+        const res = await listAll(storageRef);
+        materialsList.innerHTML = "";
 
-      for (const subject in grouped) {
-        const section = document.createElement("section");
-        section.className = "material-box";
-        section.innerHTML = `<h2>${subject}</h2>`;
+        const grouped = {};
+        res.items.forEach((itemRef) => {
+          const name = itemRef.name.toUpperCase();
 
-        grouped[subject].forEach((itemRef) => {
-          getDownloadURL(itemRef).then((url) => {
+          // Only match exact subject prefixes (like PSC-, DSD-, etc.)
+          const matchKey = Object.keys(subjects).find(
+            key => name.startsWith(key + "-") || name.includes(key + "-CO")
+          );
+
+          const subject = matchKey ? subjects[matchKey] : "Other Materials";
+          if (!grouped[subject]) grouped[subject] = [];
+          grouped[subject].push(itemRef);
+        });
+
+        for (const subject in grouped) {
+          const section = document.createElement("section");
+          section.className = "material-box";
+          section.innerHTML = `<h2>${subject}</h2>`;
+
+          for (const itemRef of grouped[subject]) {
+            const url = await getDownloadURL(itemRef);
             const name = itemRef.name.replace(/_/g, " ");
             const link = document.createElement("a");
             link.href = url;
@@ -58,14 +90,17 @@
             link.target = "_blank";
             link.className = "download-btn";
             section.appendChild(link);
-          });
-        });
+          }
 
-        materialsList.appendChild(section);
+          materialsList.appendChild(section);
+        }
+      } catch (error) {
+        console.error("Error loading materials:", error);
+        materialsList.innerHTML = `<p>⚠️ Unable to load materials. Check Firebase config or rules.</p>`;
       }
-    })
-    .catch((error) => {
-      console.error(error);
-      materialsList.innerHTML = `<p>⚠️ Error loading materials. Check Firebase config or rules.</p>`;
-    });
-</script>
+    }
+
+    loadMaterials();
+  </script>
+</body>
+</html>
