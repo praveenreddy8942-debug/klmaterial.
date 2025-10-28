@@ -20,11 +20,10 @@
   </header>
 
   <main class="materials-container">
-    <h1>📚 Study Materials</h1>
+    <h1>📚 CSE Study Materials</h1>
 
-    <!-- Dynamic Firebase List -->
-    <div id="materials-list" class="materials-list">
-      <p>Loading materials from Firebase...</p>
+    <div id="materials-list">
+      <!-- Firebase script will load subjects here -->
     </div>
   </main>
 
@@ -32,7 +31,76 @@
     <p>© 2025 Praveen Reddy | All rights reserved.</p>
   </footer>
 
-  <!-- Firebase SDKs and Script -->
-  <script type="module" src="script.js"></script>
+  <!-- Firebase Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+
+    // 🔥 Replace with your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "cse-materials.firebaseapp.com",
+      projectId: "cse-materials",
+      storageBucket: "cse-materials.firebasestorage.app",
+      messagingSenderId: "YOUR_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+
+    const materialsList = document.getElementById("materials-list");
+    const storageRef = ref(storage);
+
+    // 🔹 Subject mapping (filename keyword → Subject Name)
+    const subjects = {
+      "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
+      "DM": "Discrete Mathematics (DM)",
+      "C": "Problem Solving Through C",
+      "DSD": "Digital System Design (DSD)",
+      "CTSD": "C Programming & Software Design"
+    };
+
+    // Fetch files
+    listAll(storageRef)
+      .then((res) => {
+        materialsList.innerHTML = "";
+
+        // Group files by subject
+        const grouped = {};
+        res.items.forEach((itemRef) => {
+          const name = itemRef.name;
+          const matchKey = Object.keys(subjects).find(key => name.toUpperCase().includes(key));
+          const subject = matchKey ? subjects[matchKey] : "Other Materials";
+          if (!grouped[subject]) grouped[subject] = [];
+          grouped[subject].push(itemRef);
+        });
+
+        // Display subject-wise
+        for (const subject in grouped) {
+          const section = document.createElement("section");
+          section.className = "material-box";
+          section.innerHTML = `<h2>${subject}</h2>`;
+
+          grouped[subject].forEach((itemRef) => {
+            getDownloadURL(itemRef).then((url) => {
+              const name = itemRef.name.replace(/_/g, " ");
+              const link = document.createElement("a");
+              link.href = url;
+              link.textContent = "📄 " + name;
+              link.target = "_blank";
+              link.className = "download-btn";
+              section.appendChild(link);
+            });
+          });
+
+          materialsList.appendChild(section);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        materialsList.innerHTML = `<p>⚠️ Error loading materials. Check Firebase config or rules.</p>`;
+      });
+  </script>
 </body>
 </html>
