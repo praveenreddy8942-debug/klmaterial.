@@ -9,7 +9,7 @@
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      background-color: #f5f5f5;
+      background-color: #f4f6ff;
       text-align: center;
     }
 
@@ -23,6 +23,23 @@
       margin: 0;
     }
 
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+      color: yellow;
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: #333;
+    }
+
     .materials-container {
       display: flex;
       flex-wrap: wrap;
@@ -33,16 +50,18 @@
 
     .card {
       background: white;
-      width: 250px;
-      border-radius: 10px;
+      width: 260px;
+      border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
       padding: 20px;
+      cursor: pointer;
+      animation: fadeInUp 1s ease;
     }
 
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
     .card h3 {
@@ -58,7 +77,7 @@
       background: #0056b3;
       color: white;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 6px;
       transition: background 0.3s ease;
     }
 
@@ -72,20 +91,31 @@
       padding: 15px 0;
       margin-top: 40px;
     }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Study Materials</h1>
     <nav>
-      <a href="index.html" style="color:white; margin-right:20px;">Home</a>
-      <a href="about.html" style="color:white; margin-right:20px;">About</a>
-      <a href="materials.html" style="color:yellow;">Materials</a>
-      <a href="contact.html" style="color:white; margin-left:20px;">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="materials.html" style="color: yellow;">Materials</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <h2 style="margin-top:30px;">Available Subjects</h2>
+  <h2>Available Subjects</h2>
 
   <div class="materials-container">
     <div class="card">
