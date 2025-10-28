@@ -5,118 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Study Materials | Praveen Reddy</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* ======== PAGE STYLING ======== */
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #f5f6fa;
-      color: #222;
-    }
-
-    header {
-      background: #004aad;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h2 {
-      margin: 0;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    nav a.active,
-    nav a:hover {
-      color: #ffdd00;
-    }
-
-    main {
-      padding: 2rem;
-    }
-
-    main h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2rem;
-      color: #004aad;
-    }
-
-    /* ======== CARD GRID ======== */
-    #materials-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .material-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeIn 0.8s ease forwards;
-      opacity: 0;
-    }
-
-    .material-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .material-card h2 {
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-      color: #004aad;
-    }
-
-    .download-btn {
-      display: block;
-      margin: 0.5rem 0;
-      background: #004aad;
-      color: white;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.3s ease;
-      font-size: 0.9rem;
-    }
-
-    .download-btn:hover {
-      background: #0074e4;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #004aad;
-      color: white;
-      margin-top: 2rem;
-    }
-
-    /* ======== FADE-IN ANIMATION ======== */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -131,7 +19,7 @@
     </nav>
   </header>
 
-  <main>
+  <main class="materials-container">
     <h1>📚 CSE Study Materials</h1>
     <div id="materials-list">
       <p>Loading materials...</p>
@@ -147,6 +35,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
+    // ✅ Correct Firebase config
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "cse-materials.firebaseapp.com",
@@ -158,9 +47,11 @@
 
     const app = initializeApp(firebaseConfig);
     const storage = getStorage(app);
+
     const materialsList = document.getElementById("materials-list");
     const storageRef = ref(storage);
 
+    // 🔹 Subject mapping
     const subjects = {
       "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
       "DM": "Discrete Mathematics (DM)",
@@ -168,11 +59,12 @@
       "DSD": "Digital System Design (DSD)"
     };
 
+    // Fetch all files
     listAll(storageRef)
       .then((res) => {
         materialsList.innerHTML = "";
-        const grouped = {};
 
+        const grouped = {};
         res.items.forEach((itemRef) => {
           const name = itemRef.name;
           const matchKey = Object.keys(subjects).find(key => name.toUpperCase().includes(key));
@@ -181,13 +73,10 @@
           grouped[subject].push(itemRef);
         });
 
-        let delay = 0;
         for (const subject in grouped) {
-          const card = document.createElement("div");
-          card.className = "material-card";
-          card.style.animationDelay = `${delay}s`;
-          delay += 0.2;
-          card.innerHTML = `<h2>${subject}</h2>`;
+          const section = document.createElement("section");
+          section.className = "material-box";
+          section.innerHTML = `<h2>${subject}</h2>`;
 
           grouped[subject].forEach((itemRef) => {
             getDownloadURL(itemRef).then((url) => {
@@ -197,11 +86,11 @@
               link.textContent = "📄 " + name;
               link.target = "_blank";
               link.className = "download-btn";
-              card.appendChild(link);
+              section.appendChild(link);
             });
           });
 
-          materialsList.appendChild(card);
+          materialsList.appendChild(section);
         }
       })
       .catch((error) => {
