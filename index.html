@@ -1,32 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Praveen Reddy | Home</title>
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
 </head>
 <body>
-  <canvas id="bgCanvas"></canvas>
+  <canvas id="stars"></canvas>
 
-  <header>
-    <h2 class="logo">⚡ Praveen Reddy</h2>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="materials.html">Materials</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="bolt">⚡</span>
+        <a href="index.html" class="brand-name">Praveen Reddy</a>
+      </div>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="materials.html" class="active">Materials</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <button id="navToggle" aria-label="Toggle menu">☰</button>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero">
-    <img src="profile.jpg" alt="Profile" class="profile-pic">
-    <h1 id="typing-text"></h1>
-    <p class="subtitle">CSE Student | Developer | Designer</p>
-    <a href="materials.html" class="btn glow-btn">📘 Explore Study Materials</a>
-  </section>
+  <main class="container main-content">
+    <section class="hero fade-in">
+      <h1>Welcome</h1>
+      <p class="lead">High-quality study materials and notes for your semester. Click Materials to download PDFs.</p>
+      <a class="cta" href="materials.html">Open Materials</a>
+    </section>
 
-  <footer>© 2025 Praveen Reddy | All rights reserved.</footer>
+    <section class="showcase fade-in">
+      <img src="profile.jpg" alt="Profile" class="hero-img" />
+      <div class="showcase-text">
+        <h2>About these materials</h2>
+        <p>All files are stored in the same repository root so links open directly on GitHub Pages.
+          The Materials page lists each subject with download buttons for CO notes and full PDF files.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      © 2025 Praveen Reddy | All rights reserved.
+    </div>
+  </footer>
+
+  <button id="backToTop" title="Back to top">↑</button>
+
+  <script src="script.js"></script>
 </body>
-</html>
+</html>>
