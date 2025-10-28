@@ -1,90 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Materials | My Website</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Materials | Praveen Reddy</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Learning Materials</h1>
+    <h1>Study Materials</h1>
     <nav>
       <a href="index.html">Home</a>
-      <a href="materials.html" class="active">Materials</a>
       <a href="about.html">About</a>
+      <a href="materials.html" class="active">Materials</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <button id="theme-toggle" class="theme-btn">🌙</button>
   </header>
 
-  <main class="fullscreen center">
-    <section class="card-grid">
-
-      <div class="flip-card fade-in">
-        <div class="flip-inner">
-          <div class="flip-front">
-            <h3>Basic Electrical and Electronic Circuits</h3>
-          </div>
-          <div class="flip-back">
-            <h4>Download Material ⚡</h4>
-            <a href="materials/BEEC.pdf" download>
-              <i class="fa-solid fa-file-pdf"></i> BEEC Material
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card fade-in">
-        <div class="flip-inner">
-          <div class="flip-front">
-            <h3>Problem Solving through C</h3>
-          </div>
-          <div class="flip-back">
-            <h4>Download Material 💻</h4>
-            <a href="materials/C.pdf" download>
-              <i class="fa-solid fa-file-pdf"></i> C Material
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card fade-in">
-        <div class="flip-inner">
-          <div class="flip-front">
-            <h3>Digital System Design</h3>
-          </div>
-          <div class="flip-back">
-            <h4>Download Material ⚙️</h4>
-            <a href="materials/DSD.pdf" download>
-              <i class="fa-solid fa-file-pdf"></i> DSD Material
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card fade-in">
-        <div class="flip-inner">
-          <div class="flip-front">
-            <h3>Discrete Mathematics</h3>
-          </div>
-          <div class="flip-back">
-            <h4>Download Material 📗</h4>
-            <a href="materials/DM.pdf" download>
-              <i class="fa-solid fa-file-pdf"></i> DM Material
-            </a>
-          </div>
-        </div>
-      </div>
-
+  <main>
+    <section>
+      <h2>Available Subjects</h2>
+      <ul>
+        <li><a href="BEEC.pdf" target="_blank">Basic Electrical and Electronic Circuits (BEEC)</a></li>
+        <li><a href="C.pdf" target="_blank">Problem Solving Through C</a></li>
+        <li><a href="DSD.pdf" target="_blank">Digital System Design</a></li>
+        <li><a href="DM.pdf" target="_blank">Discrete Mathematics</a></li>
+      </ul>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 My Website | Created by Praveen Reddy</p>
+    <p>© 2025 Praveen Reddy | All rights reserved.</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
