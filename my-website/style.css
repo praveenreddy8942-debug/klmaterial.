@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.4s, color 0.4s;
+}
+
+body {
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background: #0a74da;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s, transform 0.3s;
+}
+
+nav a:hover, nav a.active {
+  color: #ffd700;
+  transform: scale(1.1);
+}
+
+.theme-btn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.3s;
+}
+
+.fullscreen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  max-width: 400px;
+  animation: fadeIn 1.5s ease-in;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #0a74da;
+  animation: float 3s ease-in-out infinite;
+}
+
+button {
+  background: #0a74da;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: transform 0.3s;
+}
+
+button:hover { transform: scale(1.1); }
+
+footer {
+  background: #0a74da;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Flip Cards */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.flip-card {
+  background: transparent;
+  width: 270px;
+  height: 190px;
+  perspective: 1000px;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.flip-front {
+  background: linear-gradient(135deg, #74ebd5, #9face6);
+}
+
+.flip-back {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.flip-back a {
+  color: #fff;
+  text-decoration: none;
+  background: rgba(255,255,255,0.2);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-top: 8px;
+  transition: 0.3s;
+}
+
+.flip-back a:hover { background: rgba(255,255,255,0.4); }
+
+/* Social icons */
+.social-icons a {
+  color: #0a74da;
+  font-size: 1.8rem;
+  margin: 0 10px;
+  transition: transform 0.3s;
+}
+
+.social-icons a:hover { transform: scale(1.2); }
+
+body.dark {
+  background: linear-gradient(135deg, #121212, #2b2b2b);
+  color: #f5f5f5;
+}
+
+body.dark header, body.dark footer {
+  background: #1e1e1e;
+}
+
+@keyframes fadeIn { from {opacity:0;transform:translateY(20px);} to {opacity:1;transform:translateY(0);} }
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
