@@ -32,12 +32,12 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-    // ✅ Replace with your Firebase config
+    // ✅ Firebase configuration
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "cse-materials.firebaseapp.com",
       projectId: "cse-materials",
-      storageBucket: "cse-materials.appspot.com", // ✅ must end with .appspot.com
+      storageBucket: "cse-materials.appspot.com",  // ✅ fixed bucket name
       messagingSenderId: "YOUR_ID",
       appId: "YOUR_APP_ID"
     };
@@ -48,14 +48,23 @@
     const materialsList = document.getElementById("materials-list");
     const storageRef = ref(storage);
 
-    // 🔹 Subject mapping
-    const subjects = {
-      "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
-      "DM": "Discrete Mathematics (DM)",
-      "DSD": "Digital System Design (DSD)",
-      "CTSD": "C Programming & Software Design",
-      "PSC": "Problem Solving Through C"
-    };
+    // 🔹 Subject name keywords (auto-match by filename)
+    const subjectPatterns = [
+      { keywords: ["BEEC"], name: "Basic Electrical & Electronic Circuits (BEEC)" },
+      { keywords: ["DM", "DISCRETE"], name: "Discrete Mathematics (DM)" },
+      { keywords: ["DSD", "DIGITAL"], name: "Digital System Design (DSD)" },
+      { keywords: ["CTSD", "SOFTWARE DESIGN"], name: "C Programming & Software Design (CTSD)" },
+      { keywords: ["PSC", "PROBLEM SOLVING", "C-CO", "THROUGH C"], name: "Problem Solving Through C" }
+    ];
+
+    // Helper: detect subject from filename
+    function detectSubject(fileName) {
+      const upperName = fileName.toUpperCase();
+      for (const s of subjectPatterns) {
+        if (s.keywords.some(k => upperName.includes(k))) return s.name;
+      }
+      return "Other Materials";
+    }
 
     async function loadMaterials() {
       try {
@@ -63,20 +72,16 @@
         materialsList.innerHTML = "";
 
         const grouped = {};
-        res.items.forEach((itemRef) => {
-          const name = itemRef.name.toUpperCase();
-
-          // Only match exact subject prefixes (like PSC-, DSD-, etc.)
-          const matchKey = Object.keys(subjects).find(
-            key => name.startsWith(key + "-") || name.includes(key + "-CO")
-          );
-
-          const subject = matchKey ? subjects[matchKey] : "Other Materials";
+        res.items.forEach(itemRef => {
+          const subject = detectSubject(itemRef.name);
           if (!grouped[subject]) grouped[subject] = [];
           grouped[subject].push(itemRef);
         });
 
-        for (const subject in grouped) {
+        // Sort subjects alphabetically for nice display
+        const sortedSubjects = Object.keys(grouped).sort();
+
+        for (const subject of sortedSubjects) {
           const section = document.createElement("section");
           section.className = "material-box";
           section.innerHTML = `<h2>${subject}</h2>`;
