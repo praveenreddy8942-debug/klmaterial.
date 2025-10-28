@@ -1,138 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
+/* General Page Setup */
 body {
-  height: 100vh;
-  overflow: hidden;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top, #000428, #004e92);
   color: white;
-  background: radial-gradient(circle at center, #020024, #090979, #000);
+  overflow-y: auto;
 }
 
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
+/* Header and Navbar */
 header {
-  position: fixed;
-  top: 0;
-  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: #00ffff;
   text-align: center;
-  padding: 20px 0;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 20px #00ffff;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
-.logo {
-  color: #00ffff;
-  text-shadow: 0 0 20px #00ffff;
-  font-size: 1.5em;
-  margin-bottom: 10px;
+header h1 {
+  margin: 5px 0;
+  font-size: 1.5rem;
 }
 
 nav a {
-  margin: 0 20px;
-  text-decoration: none;
   color: white;
-  transition: 0.3s;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
+  color: #00ffff;
+}
+
+/* Materials Section */
+.materials-container {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.materials-title {
+  font-size: 2rem;
+  font-weight: 700;
   color: #00ffff;
   text-shadow: 0 0 15px #00ffff;
+  margin-bottom: 40px;
 }
 
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.profile-pic {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  box-shadow: 0 0 40px #00ffff;
-  animation: float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-.glow {
-  color: #00ffff;
-  text-shadow: 0 0 20px #00ffff, 0 0 30px #00ccff;
-}
-
-.subtitle {
-  margin-top: 10px;
-  font-weight: 300;
-  font-size: 1.1em;
-  color: #aee;
-}
-
-.btn {
-  margin-top: 25px;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 25px;
-  background: linear-gradient(90deg, #00ffff, #0066ff);
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 0 20px #00ffff;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  transform: scale(1.1);
-  background: linear-gradient(90deg, #00ccff, #0099ff);
-  box-shadow: 0 0 40px #00ffff;
-}
-
-.materials {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  margin-top: 30px;
-}
-
+/* Subject Cards */
 .subject-card {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid #00ffff;
-  padding: 20px;
-  border-radius: 12px;
-  width: 250px;
-  text-align: center;
-  box-shadow: 0 0 20px #00ffff;
-  transition: 0.4s;
+  background: rgba(0, 0, 50, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 25px;
+  margin: 25px auto;
+  width: 90%;
+  max-width: 500px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .subject-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 40px #00ffff;
+  transform: translateY(-5px);
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.6);
 }
 
-footer {
-  position: fixed;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
-  color: #aaa;
-  font-size: 0.9em;
+.subject-card h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+}
+
+/* Buttons */
+.download-btn,
+.co-buttons a {
+  display: inline-block;
+  background: linear-gradient(90deg, #00ffff, #007bff);
+  color: #000;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin: 5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover,
+.co-buttons a:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #00ffff, #00bcd4);
+}
+
+/* Footer */
+.footer {
+  margin-top: 60px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .materials-title {
+    font-size: 1.5rem;
+  }
+
+  .subject-card {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .subject-card h3 {
+    font-size: 1.1rem;
+  }
 }
