@@ -21,8 +21,9 @@
 
   <main class="materials-container">
     <h1>📚 CSE Study Materials</h1>
+
     <div id="materials-list">
-      <p>Loading materials...</p>
+      <!-- Firebase script will load subjects here -->
     </div>
   </main>
 
@@ -35,12 +36,12 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-    // ✅ Correct Firebase config
+    // 🔥 Replace with your Firebase config
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "cse-materials.firebaseapp.com",
       projectId: "cse-materials",
-      storageBucket: "cse-materials.appspot.com",
+      storageBucket: "cse-materials.firebasestorage.app",
       messagingSenderId: "YOUR_ID",
       appId: "YOUR_APP_ID"
     };
@@ -51,19 +52,21 @@
     const materialsList = document.getElementById("materials-list");
     const storageRef = ref(storage);
 
-    // 🔹 Subject mapping
+    // 🔹 Subject mapping (filename keyword → Subject Name)
     const subjects = {
       "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
       "DM": "Discrete Mathematics (DM)",
-      "PSC": "Problem Solving Through C (PSC)",
-      "DSD": "Digital System Design (DSD)"
+      "C": "Problem Solving Through C",
+      "DSD": "Digital System Design (DSD)",
+      "CTSD": "C Programming & Software Design"
     };
 
-    // Fetch all files
+    // Fetch files
     listAll(storageRef)
       .then((res) => {
         materialsList.innerHTML = "";
 
+        // Group files by subject
         const grouped = {};
         res.items.forEach((itemRef) => {
           const name = itemRef.name;
@@ -73,6 +76,7 @@
           grouped[subject].push(itemRef);
         });
 
+        // Display subject-wise
         for (const subject in grouped) {
           const section = document.createElement("section");
           section.className = "material-box";
