@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Study Materials</title>
+  <title>Study Materials | Praveen Reddy</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #007bff, #00c6ff);
+      background: linear-gradient(135deg, #0066ff, #00c3ff);
       color: white;
       margin: 0;
       padding: 0;
-      text-align: center;
       animation: fadeIn 1s ease-in;
     }
 
@@ -21,16 +20,68 @@
       to {opacity: 1; transform: translateY(0);}
     }
 
-    header {
+    /* Navbar */
+    nav {
       background: rgba(0, 0, 0, 0.3);
-      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav h1 {
       font-size: 24px;
-      font-weight: bold;
       letter-spacing: 1px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(to right, #00e0ff, #00ff88);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #00ffcc;
+      left: 0;
+      bottom: -5px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    nav ul li a:hover {
+      color: #00ffcc;
     }
 
     h2 {
+      text-align: center;
       margin-top: 40px;
       font-size: 28px;
       text-transform: uppercase;
@@ -80,7 +131,7 @@
       padding: 10px;
       border-radius: 8px;
       margin: 6px 0;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
 
     .pdf-list a:hover {
@@ -93,12 +144,20 @@
       padding: 15px;
       font-size: 14px;
       margin-top: 50px;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
-  <header>📘 STUDY MATERIALS</header>
+  <nav>
+    <h1>📘 Study Materials</h1>
+    <ul>
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="about.html">👤 About</a></li>
+      <li><a href="contact.html">📞 Contact</a></li>
+    </ul>
+  </nav>
 
   <h2>Available Subjects</h2>
 
