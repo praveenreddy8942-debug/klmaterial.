@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Study Materials | KL Material</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -13,58 +12,74 @@
       background: linear-gradient(135deg, #0072ff, #00c6ff);
       color: #333;
       min-height: 100vh;
+      overflow-x: hidden;
+      animation: fadeInBody 1s ease-in;
+    }
+
+    @keyframes fadeInBody {
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
 
     header {
       background: #003366;
       color: #fff;
-      padding: 15px 0;
+      padding: 20px 0;
       text-align: center;
-      font-size: 1.8rem;
-      letter-spacing: 1px;
+      font-size: 2rem;
       font-weight: 600;
-      text-transform: uppercase;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      letter-spacing: 1px;
     }
 
     .container {
       width: 90%;
       max-width: 1100px;
-      margin: 40px auto;
+      margin: 50px auto;
       text-align: center;
+      animation: slideIn 1s ease;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     h2 {
       color: white;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
     }
 
     .subject-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      gap: 25px;
     }
 
     .subject-card {
       background: rgba(255,255,255,0.95);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 15px;
+      padding: 25px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       transition: all 0.4s ease;
-      transform: translateY(0);
-      animation: fadeIn 1s ease;
+      animation: popUp 0.8s ease;
     }
 
     .subject-card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    @keyframes popUp {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
     }
 
     .subject-card h3 {
       color: #003366;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
+      margin-bottom: 12px;
+      font-size: 1.2rem;
     }
 
     .pdf-list a {
@@ -72,9 +87,10 @@
       text-decoration: none;
       color: white;
       background: #0072ff;
-      padding: 10px 0;
-      border-radius: 8px;
-      margin: 8px 0;
+      padding: 12px 0;
+      border-radius: 10px;
+      margin: 10px 0;
+      font-weight: 500;
       transition: 0.3s;
     }
 
@@ -84,29 +100,23 @@
     }
 
     footer {
-      margin-top: 50px;
-      padding: 15px;
+      margin-top: 60px;
+      padding: 20px;
       background: #003366;
       color: #fff;
       text-align: center;
       font-size: 0.9rem;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
 
-  <header>📘 Study Materials</header>
+  <header>📘 STUDY MATERIALS</header>
 
   <div class="container">
     <h2>Available Subjects</h2>
     <div class="subject-grid">
 
-      <!-- Problem Solving Through C -->
       <div class="subject-card">
         <h3>Problem Solving Through C</h3>
         <div class="pdf-list">
@@ -114,15 +124,13 @@
         </div>
       </div>
 
-      <!-- Basic Electrical and Electronic Circuits -->
       <div class="subject-card">
         <h3>Basic Electrical and Electronic Circuits</h3>
         <div class="pdf-list">
-          <a href="InSem-I Updated CO1 & CO2 Notes_unlocked 2.pdf" target="_blank">📄 Download Notes</a>
+          <a href="InSem-I-Updated-CO1-CO2-Notes.pdf" target="_blank">📄 Download Notes</a>
         </div>
       </div>
 
-      <!-- Discrete Mathematics -->
       <div class="subject-card">
         <h3>Discrete Mathematics</h3>
         <div class="pdf-list">
@@ -132,12 +140,11 @@
         </div>
       </div>
 
-      <!-- Digital System Design -->
       <div class="subject-card">
         <h3>Digital System Design</h3>
         <div class="pdf-list">
-          <a href="CO-1 terminal questions and answers.pdf" target="_blank">📕 CO-1 Terminal Questions</a>
-          <a href="DSD CO-2 Terminal Questions.pdf" target="_blank">📕 CO-2 Terminal Questions</a>
+          <a href="DSD-CO1-Terminal.pdf" target="_blank">📕 CO-1 Terminal Questions</a>
+          <a href="DSD-CO2-Terminal.pdf" target="_blank">📕 CO-2 Terminal Questions</a>
         </div>
       </div>
 
