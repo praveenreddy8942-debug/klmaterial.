@@ -21,23 +21,27 @@
 
   <main class="materials-container">
     <h1>📚 CSE Study Materials</h1>
-    <div id="materials-list">Loading materials...</div>
+
+    <div id="materials-list">
+      <!-- Firebase script will load subjects here -->
+    </div>
   </main>
 
   <footer>
     <p>© 2025 Praveen Reddy | All rights reserved.</p>
   </footer>
 
+  <!-- Firebase Scripts -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-    // ✅ Firebase configuration
+    // 🔥 Replace with your Firebase config
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "cse-materials.firebaseapp.com",
       projectId: "cse-materials",
-      storageBucket: "cse-materials.appspot.com",  // ✅ fixed bucket name
+      storageBucket: "cse-materials.firebasestorage.app",
       messagingSenderId: "YOUR_ID",
       appId: "YOUR_APP_ID"
     };
@@ -48,64 +52,55 @@
     const materialsList = document.getElementById("materials-list");
     const storageRef = ref(storage);
 
-    // 🔹 Subject name keywords (auto-match by filename)
-    const subjectPatterns = [
-      { keywords: ["BEEC"], name: "Basic Electrical & Electronic Circuits (BEEC)" },
-      { keywords: ["DM", "DISCRETE"], name: "Discrete Mathematics (DM)" },
-      { keywords: ["DSD", "DIGITAL"], name: "Digital System Design (DSD)" },
-      { keywords: ["CTSD", "SOFTWARE DESIGN"], name: "C Programming & Software Design (CTSD)" },
-      { keywords: ["PSC", "PROBLEM SOLVING", "C-CO", "THROUGH C"], name: "Problem Solving Through C" }
-    ];
+    // 🔹 Subject mapping (filename keyword → Subject Name)
+    const subjects = {
+      "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
+      "DM": "Discrete Mathematics (DM)",
+      "C": "Problem Solving Through C",
+      "DSD": "Digital System Design (DSD)",
+      "CTSD": "C Programming & Software Design"
+    };
 
-    // Helper: detect subject from filename
-    function detectSubject(fileName) {
-      const upperName = fileName.toUpperCase();
-      for (const s of subjectPatterns) {
-        if (s.keywords.some(k => upperName.includes(k))) return s.name;
-      }
-      return "Other Materials";
-    }
-
-    async function loadMaterials() {
-      try {
-        const res = await listAll(storageRef);
+    // Fetch files
+    listAll(storageRef)
+      .then((res) => {
         materialsList.innerHTML = "";
 
+        // Group files by subject
         const grouped = {};
-        res.items.forEach(itemRef => {
-          const subject = detectSubject(itemRef.name);
+        res.items.forEach((itemRef) => {
+          const name = itemRef.name;
+          const matchKey = Object.keys(subjects).find(key => name.toUpperCase().includes(key));
+          const subject = matchKey ? subjects[matchKey] : "Other Materials";
           if (!grouped[subject]) grouped[subject] = [];
           grouped[subject].push(itemRef);
         });
 
-        // Sort subjects alphabetically for nice display
-        const sortedSubjects = Object.keys(grouped).sort();
-
-        for (const subject of sortedSubjects) {
+        // Display subject-wise
+        for (const subject in grouped) {
           const section = document.createElement("section");
           section.className = "material-box";
           section.innerHTML = `<h2>${subject}</h2>`;
 
-          for (const itemRef of grouped[subject]) {
-            const url = await getDownloadURL(itemRef);
-            const name = itemRef.name.replace(/_/g, " ");
-            const link = document.createElement("a");
-            link.href = url;
-            link.textContent = "📄 " + name;
-            link.target = "_blank";
-            link.className = "download-btn";
-            section.appendChild(link);
-          }
+          grouped[subject].forEach((itemRef) => {
+            getDownloadURL(itemRef).then((url) => {
+              const name = itemRef.name.replace(/_/g, " ");
+              const link = document.createElement("a");
+              link.href = url;
+              link.textContent = "📄 " + name;
+              link.target = "_blank";
+              link.className = "download-btn";
+              section.appendChild(link);
+            });
+          });
 
           materialsList.appendChild(section);
         }
-      } catch (error) {
-        console.error("Error loading materials:", error);
-        materialsList.innerHTML = `<p>⚠️ Unable to load materials. Check Firebase config or rules.</p>`;
-      }
-    }
-
-    loadMaterials();
+      })
+      .catch((error) => {
+        console.error(error);
+        materialsList.innerHTML = `<p>⚠️ Error loading materials. Check Firebase config or rules.</p>`;
+      });
   </script>
 </body>
 </html>
