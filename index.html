@@ -5,33 +5,117 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Praveen Reddy | Home</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px 0;
+      backdrop-filter: blur(6px);
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 25px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffeb3b;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .hero img {
+      width: 75%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .hero h1 {
+      margin-top: 40px;
+      font-size: 2.5rem;
+      color: #fff;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #e3f2fd;
+    }
+
+    .hero a {
+      background-color: #ffeb3b;
+      color: #0d47a1;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 20px;
+      display: inline-block;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .hero a:hover {
+      background-color: #fff176;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.4);
+      text-align: center;
+      padding: 15px;
+      margin-top: 60px;
+      color: #e0e0e0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to My Website</h1>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="materials.html">Materials</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <button id="theme-toggle" class="theme-btn">🌙</button>
-  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="materials.html">Materials</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-  <main class="fullscreen center">
-    <section class="card fade-in">
-      <img src="profile.jpg" alt="Profile" class="profile-pic" />
-      <h2>Hi, I'm <span>Praveen Reddy 👋</span></h2>
-      <p>I'm a web developer passionate about creating beautiful, functional, and modern websites.</p>
-      <button onclick="sayHello()">Say Hello</button>
-    </section>
-  </main>
+  <section class="hero">
+    <img src="profile.jpg" alt="Praveen Reddy Image" />
+    <h1>Hi, I'm Praveen Reddy 👋</h1>
+    <p>I'm a web developer passionate about creating beautiful, functional, and modern websites.</p>
+    <a href="materials.html">Explore Materials</a>
+  </section>
 
   <footer>
-    <p>© 2025 My Website | Created by Praveen Reddy</p>
+    © 2025 Praveen Reddy | Created by Praveen Reddy
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
