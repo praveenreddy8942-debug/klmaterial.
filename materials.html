@@ -3,144 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Study Materials | Praveen Reddy</title>
+  <title>Study Materials</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background-color: #f4f6ff;
-      text-align: center;
-    }
-
-    header {
-      background-color: #0056b3;
-      color: white;
-      padding: 20px;
-    }
-
-    h1 {
-      margin: 0;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-      color: yellow;
-    }
-
-    h2 {
-      margin-top: 30px;
-      color: #333;
-    }
-
-    .materials-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 30px;
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      width: 260px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      padding: 20px;
-      cursor: pointer;
-      animation: fadeInUp 1s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-
-    .card h3 {
-      color: #0056b3;
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 15px;
-      background: #0056b3;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background 0.3s ease;
-    }
-
-    .card a:hover {
-      background: #003d80;
-    }
-
-    footer {
-      background-color: #0056b3;
-      color: white;
-      padding: 15px 0;
-      margin-top: 40px;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        transform: translateY(30px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <h1>Study Materials</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="materials.html" style="color: yellow;">Materials</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+  <header class="header">
+    <h1 class="title">📚 Study Materials</h1>
   </header>
 
-  <h2>Available Subjects</h2>
+  <section class="materials-section">
+    <h2 class="section-title">Available Subjects</h2>
+    <div class="materials-container">
+      <div class="subject-card">
+        <h3>Basic Electrical and Electronic Circuits (BEEC)</h3>
+        <a href="materials/beec.pdf" download>Download</a>
+      </div>
 
-  <div class="materials-container">
-    <div class="card">
-      <h3>Basic Electrical and Electronic Circuits (BEEC)</h3>
-      <a href="BEEC.pdf" target="_blank">View / Download</a>
+      <div class="subject-card">
+        <h3>Problem Solving Through C</h3>
+        <a href="materials/psc.pdf" download>Download</a>
+      </div>
+
+      <div class="subject-card">
+        <h3>Digital System Design (DSD)</h3>
+        <a href="materials/dsd.pdf" download>Download</a>
+      </div>
+
+      <div class="subject-card">
+        <h3>Discrete Mathematics (DM)</h3>
+        <a href="materials/dm.pdf" download>Download</a>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Problem Solving Through C</h3>
-      <a href="C.pdf" target="_blank">View / Download</a>
-    </div>
-
-    <div class="card">
-      <h3>Digital System Design (DSD)</h3>
-      <a href="DSD.pdf" target="_blank">View / Download</a>
-    </div>
-
-    <div class="card">
-      <h3>Discrete Mathematics (DM)</h3>
-      <a href="DM.pdf" target="_blank">View / Download</a>
-    </div>
-  </div>
-
-  <footer>
-    © 2025 Praveen Reddy | All rights reserved.
+  <footer class="footer">
+    <p>© 2025 Praveen Reddy | All rights reserved.</p>
   </footer>
 </body>
 </html>
