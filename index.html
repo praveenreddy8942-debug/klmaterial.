@@ -3,119 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Praveen Reddy | Home</title>
+  <title>Praveen Reddy | My Website</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
+      font-family: "Poppins", sans-serif;
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      padding: 0;
+      background: linear-gradient(135deg, #0055ff, #00c3ff);
       color: white;
-      overflow-x: hidden;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 15px 0;
-      backdrop-filter: blur(6px);
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 25px;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #ffeb3b;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 60px 20px;
-      animation: fadeIn 1.5s ease-in-out;
-    }
-
-    .hero img {
-      width: 75%;
-      max-width: 600px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-12px);
-      }
-    }
-
-    .hero h1 {
-      margin-top: 40px;
-      font-size: 2.5rem;
-      color: #fff;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #e3f2fd;
-    }
-
-    .hero a {
-      background-color: #ffeb3b;
-      color: #0d47a1;
-      padding: 12px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      margin-top: 20px;
-      display: inline-block;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .hero a:hover {
-      background-color: #fff176;
-      transform: scale(1.05);
-    }
-
-    footer {
-      background: rgba(0, 0, 0, 0.4);
-      text-align: center;
-      padding: 15px;
-      margin-top: 60px;
-      color: #e0e0e0;
+      animation: fadeIn 1s ease-in;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Navbar */
+    nav {
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav h1 {
+      font-size: 24px;
+      letter-spacing: 1px;
+      background: linear-gradient(to right, #00ffcc, #00e0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #00ffcc;
+      left: 0;
+      bottom: -5px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    nav ul li a:hover {
+      color: #00ffcc;
+    }
+
+    /* Hero section */
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #fff, #00ffcc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textPop 1s ease-in;
+    }
+
+    @keyframes textPop {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: #e0f7ff;
+    }
+
+    .hero a {
+      display: inline-block;
+      background: #00e0ff;
+      color: black;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .hero a:hover {
+      background: #00ffcc;
+      transform: scale(1.05);
+    }
+
+    /* Image */
+    .hero img {
+      width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.3);
+      margin-top: 40px;
+      transition: transform 0.3s ease;
+    }
+
+    .hero img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      margin-top: 50px;
     }
   </style>
 </head>
+
 <body>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="materials.html">Materials</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <h1>💻 Praveen Reddy</h1>
+    <ul>
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="materials.html">📘 Materials</a></li>
+      <li><a href="about.html">👤 About</a></li>
+      <li><a href="contact.html">📞 Contact</a></li>
+    </ul>
   </nav>
 
   <section class="hero">
-    <img src="profile.jpg" alt="Praveen Reddy Image" />
-    <h1>Hi, I'm Praveen Reddy 👋</h1>
-    <p>I'm a web developer passionate about creating beautiful, functional, and modern websites.</p>
-    <a href="materials.html">Explore Materials</a>
+    <h2>Welcome to My Website</h2>
+    <p>I'm <b>Praveen Reddy</b> — a passionate web developer and CSE student dedicated to building useful and visually appealing websites.  
+      Explore my study materials, projects, and resources below!</p>
+    <a href="materials.html">📘 View Study Materials</a>
+    <br />
+    <img src="profile.jpg" alt="Profile Image">
   </section>
 
-  <footer>
-    © 2025 Praveen Reddy | Created by Praveen Reddy
-  </footer>
+  <footer>© 2025 Praveen Reddy | All rights reserved.</footer>
 </body>
 </html>
