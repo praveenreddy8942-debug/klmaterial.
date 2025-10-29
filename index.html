@@ -125,30 +125,43 @@
    <footer>
     © 2025 Praveen Reddy | All rights reserved.
   </footer>
-<!-- StudyHub AI Chatbot (click to open) -->
-<button id="chatToggle"
-  style="
+<!-- StudyHub AI Chatbot (glowing & clickable) -->
+<style>
+  /* Chat bubble glow + animation */
+  @keyframes pulseGlow {
+    0% {
+      box-shadow: 0 0 0 rgba(0, 212, 255, 0.6);
+    }
+    50% {
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
+    }
+    100% {
+      box-shadow: 0 0 0 rgba(0, 212, 255, 0.6);
+    }
+  }
+
+  #chatToggle {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    background-color: #00d4ff;
+    background: linear-gradient(135deg, #00d4ff, #0077ff);
     color: white;
     border: none;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    font-size: 26px;
+    width: 65px;
+    height: 65px;
+    font-size: 28px;
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    animation: pulseGlow 2s infinite ease-in-out;
+    transition: transform 0.3s;
     z-index: 10000;
-  ">
-💬
-</button>
+  }
 
-<iframe 
-  id="chatFrame"
-  src="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/10/29/12/20251029121857-3C9TNLRZ.json"
-  style="
+  #chatToggle:hover {
+    transform: scale(1.1);
+  }
+
+  #chatFrame {
     position: fixed;
     bottom: 100px;
     right: 25px;
@@ -159,13 +172,21 @@
     z-index: 9999;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
     display: none;
-  ">
+  }
+</style>
+
+<!-- Chat button -->
+<button id="chatToggle">💬</button>
+
+<!-- Botpress Chat Embed -->
+<iframe 
+  id="chatFrame"
+  src="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/10/29/12/20251029121857-3C9TNLRZ.json">
 </iframe>
 
 <script>
   const chatToggle = document.getElementById("chatToggle");
   const chatFrame = document.getElementById("chatFrame");
-
   let chatVisible = false;
 
   chatToggle.addEventListener("click", () => {
@@ -173,6 +194,5 @@
     chatFrame.style.display = chatVisible ? "block" : "none";
   });
 </script>
-   
 </body>
 </html>
