@@ -127,32 +127,6 @@
   <footer>
     © 2025 Praveen Reddy | All rights reserved.
   </footer>
-  <!-- Botpress Chatbot -->
-  <script src="https://cdn.botpress.cloud/webchat/v0/inject.js"></script>
-  <script>
-    window.botpressWebChat.init({
-      "botId": "cfe0224-877f-4d38-9aa5-39cf8be5b4b1",
-      "clientId": "cfe0224-877f-4d38-9aa5-39cf8be5b4b1",
-      "hostUrl": "https://cdn.botpress.cloud/webchat/v0",
-      "messagingUrl": "https://messaging.botpress.cloud",
-      "botName": "StudyHub AI",
-      "avatarUrl": "https://files.bpcontent.cloud/avatar.png",
-      "useSessionStorage": true,
-      "theme": "light",
-      "themeColor": "#0575E6"
-    });
-
-    // Auto open chat and show welcome message
-    window.addEventListener("load", () => {
-      window.botpressWebChat.onEvent(
-        function () {
-          window.botpressWebChat.sendEvent({ type: "show" });
-          window.botpressWebChat.sendPayload({ type: "message", text: "👋 Hi! Welcome to StudyHub AI — How can I help you today?" });
-        },
-        ["LIFECYCLE.LOADED"]
-      );
-    });
-  </script>
   <!-- StudyHub AI Chatbot -->
 <script src="https://cdn.botpress.cloud/webchat/v0/inject.js"></script>
 <script>
