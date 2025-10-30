@@ -99,7 +99,7 @@ body {
 .fade-delay-1 { animation-delay: 0.5s; }
 .fade-delay-2 { animation-delay: 1s; }
 .fade-delay-3 { animation-delay: 1.5s; }
-}
+
 
 .btn:hover {
   transform: scale(1.05);
