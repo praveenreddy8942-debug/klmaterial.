@@ -376,6 +376,19 @@ body {
   50% { box-shadow: 0 0 30px #00ffff; transform: scale(1.05); }
 
 }
+.typing-text {
+  font-size: 2rem;
+  color: #00d4ff;
+  border-right: 3px solid #00d4ff;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: blink 0.8s step-end infinite;
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
 
 
 
