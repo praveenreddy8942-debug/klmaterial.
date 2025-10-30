@@ -140,82 +140,79 @@
       box-shadow: 0 0 0 rgba(0, 212, 255, 0.6);
     }
   }
-
-  #chatToggle {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: linear-gradient(135deg, #00d4ff, #0077ff);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 65px;
-    height: 65px;
-    font-size: 28px;
-    cursor: pointer;
-    animation: pulseGlow 2s infinite ease-in-out;
-    transition: transform 0.3s;
-    z-index: 10000;
-  }
-
-  #chatToggle:hover {
-    transform: scale(1.1);
-  }
-
-  #chatFrame {
-    position: fixed;
-    bottom: 100px;
-    right: 25px;
-    width: 380px;
-    height: 520px;
-    border: none;
-    border-radius: 15px;
-    z-index: 9999;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-    display: none;
-  }
+<!-- Chat Styles -->
+<style>
+#chatToggle {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #00bfff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  z-index: 10000;
+}
+#chatToggle:hover {
+  transform: scale(1.1);
+}
+#chatFrame {
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  width: 380px;
+  height: 520px;
+  border: none;
+  border-radius: 15px;
+  z-index: 9999;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  display: none;
+}
 </style>
 
 <!-- Chat button -->
 <button id="chatToggle">💬</button>
 
 <!-- Botpress Chat Embed -->
-<iframe 
+<iframe
   id="chatFrame"
   src="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/10/29/12/20251029121857-3C9TNLRZ.json">
 </iframe>
 
 <script>
-  const chatToggle = document.getElementById("chatToggle");
-  const chatFrame = document.getElementById("chatFrame");
-  let chatVisible = false;
-
-  chatToggle.addEventListener("click", () => {
-    chatVisible = !chatVisible;
-    chatFrame.style.display = chatVisible ? "block" : "none";
-  });
+const chatToggle = document.getElementById("chatToggle");
+const chatFrame = document.getElementById("chatFrame");
+let chatVisible = false;
+chatToggle.addEventListener("click", () => {
+  chatVisible = !chatVisible;
+  chatFrame.style.display = chatVisible ? "block" : "none";
+});
 </script>
-  <script>
-  const text = "Hello, I’m Praveen Reddy 👋  Welcome to my Study Hub ✨";
-  const typingElement = document.querySelector(".typing-text");
-  let index = 0;
 
-  function type() {
-    if (index < text.length) {
-      typingElement.innerHTML += text.charAt(index);
-      index++;
-      setTimeout(type, 100); // typing speed
-    } else {
-      setTimeout(() => {
-        typingElement.innerHTML = "";
-        index = 0;
-        type(); // repeat animation
-      }, 2000);
-    }
+<script>
+const text = "Hello, I’m Praveen Reddy 👋  Welcome to my Study Hub ✨";
+const typingElement = document.querySelector(".typing-text");
+let index = 0;
+function type() {
+  if (index < text.length) {
+    typingElement.innerHTML += text.charAt(index);
+    index++;
+    setTimeout(type, 100);
+  } else {
+    setTimeout(() => {
+      typingElement.innerHTML = "";
+      index = 0;
+      type();
+    }, 2000);
   }
-
-  type();
+}
+type();
 </script>
-
 </body>
 </html>
+
+ 
