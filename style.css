@@ -327,4 +327,58 @@ nav a:hover::after {
 
 
 
+/* 🌌 Animated Background */
+body {
+  background: linear-gradient(270deg, #001d3d, #003566, #000814);
+  background-size: 600% 600%;
+  animation: bgFlow 15s ease infinite;
+}
+
+@keyframes bgFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ⌨️ Typing Animation for Hero Text */
+.typing {
+  border-right: 3px solid #00bfff;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 4s steps(30, end) forwards, blink 0.8s infinite;
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* 💫 Smooth Scroll Fade Animation */
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+.scroll-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ⚡ Upgraded Glow for Chat Button */
+#chatToggle {
+  animation: pulseGlow 2s infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px #00d4ff; transform: scale(1); }
+  50% { box-shadow: 0 0 30px #00ffff; transform: scale(1.05); }
+}
+
+
+
+
+
+
 
