@@ -117,7 +117,8 @@
 
   <section class="profile-section">
     <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
-    <h1>Hello, I’m Praveen Reddy 👋</h1>
+   <h1 class="typing-text"></h1>
+
     <p>Welcome to my study hub — your one-stop place to explore my academic notes, projects, and resources.</p>
     <a href="materials.html" class="btn">Explore Materials</a>
   </section>
@@ -194,5 +195,27 @@
     chatFrame.style.display = chatVisible ? "block" : "none";
   });
 </script>
+  <script>
+  const text = "Hello, I’m Praveen Reddy 👋 | Welcome to my Study Hub ✨";
+  const typingElement = document.querySelector(".typing-text");
+  let index = 0;
+
+  function type() {
+    if (index < text.length) {
+      typingElement.innerHTML += text.charAt(index);
+      index++;
+      setTimeout(type, 100); // typing speed
+    } else {
+      setTimeout(() => {
+        typingElement.innerHTML = "";
+        index = 0;
+        type(); // repeat animation
+      }, 2000);
+    }
+  }
+
+  type();
+</script>
+
 </body>
 </html>
