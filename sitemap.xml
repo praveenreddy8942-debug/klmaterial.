@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://praveenreddy8942-debug.github.io/klmaterial/</loc>
   </url>
+
   <url>
     <loc>https://praveenreddy8942-debug.github.io/klmaterial/materials.html</loc>
   </url>
+
+  <url>
+    <loc>https://praveenreddy8942-debug.github.io/klmaterial/roadmap.html</loc>
+  </url>
+
+  <url>
+    <loc>https://praveenreddy8942-debug.github.io/klmaterial/about.html</loc>
+  </url>
+
+  <url>
+    <loc>https://praveenreddy8942-debug.github.io/klmaterial/contact.html</loc>
+  </url>
+
 </urlset>
