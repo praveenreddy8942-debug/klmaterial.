@@ -7,7 +7,7 @@ const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "cse-materials.firebaseapp.com",
   projectId: "cse-materials",
-  storageBucket: "cse-materials.firebasestorage.app",
+  storageBucket: storageBucket: "cse-materials.firebasestorage.app",
   messagingSenderId: "YOUR_SENDER_ID",
   appId: "YOUR_APP_ID"
 };
