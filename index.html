@@ -3,15 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Praveen Reddy | Home</title>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNF82SLGR7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-JNF82SLGR7');
-</script>
+  <title>Praveen Reddy | Study Hub</title>
+
+  <!-- SEO and Metadata -->
+  <meta name="description" content="Study Hub by Praveen Reddy — Explore B.Tech materials, notes, and roadmaps for engineering students.">
+  <meta name="author" content="Praveen Reddy">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://praveenreddy8942-debug.github.io/klmaterial/">
+
+  <!-- Open Graph for Social Previews -->
+  <meta property="og:title" content="Praveen Reddy | Study Hub">
+  <meta property="og:description" content="Explore B.Tech materials, notes, and roadmaps for engineering students.">
+  <meta property="og:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg">
+  <meta property="og:url" content="https://praveenreddy8942-debug.github.io/klmaterial/">
+
+  <!-- Favicon -->
+  <link rel="icon" href="profile.jpg" type="image/jpeg">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNF82SLGR7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JNF82SLGR7');
+  </script>
+
+  <!-- Main Styles -->
   <style>
     body {
       margin: 0;
@@ -20,6 +38,7 @@
       color: white;
       text-align: center;
       min-height: 100vh;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -103,6 +122,63 @@
       color: #b0e0ff;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
+
+    /* Chat bubble glow + animation */
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 rgba(0, 212, 255, 0.6); }
+      50% { box-shadow: 0 0 25px rgba(0, 212, 255, 0.8); }
+      100% { box-shadow: 0 0 0 rgba(0, 212, 255, 0.6); }
+    }
+
+    #chatToggle {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #00bfff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      animation: pulseGlow 2s infinite;
+      transition: transform 0.3s;
+      z-index: 10000;
+    }
+
+    #chatToggle:hover {
+      transform: scale(1.1);
+    }
+
+    #chatFrame {
+      position: fixed;
+      bottom: 100px;
+      right: 25px;
+      width: 380px;
+      height: 520px;
+      border: none;
+      border-radius: 15px;
+      z-index: 9999;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      nav a {
+        margin: 0 10px;
+        font-size: 0.9rem;
+      }
+      .profile-pic {
+        width: 140px;
+        height: 180px;
+      }
+      #chatFrame {
+        width: 90%;
+        right: 5%;
+        height: 450px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -110,109 +186,61 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="materials.html">Materials</a>
-       <a href="roadmap.html">🎯B.Tech Roadmap</a>
+      <a href="roadmap.html">🎯 B.Tech Roadmap</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <section class="profile-section">
-    <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
-   <h1 class="typing-text"></h1>
-
-    <p>Welcome to my study hub — your one-stop place to explore my academic notes, projects, and resources.</p>
+    <img src="profile.jpg" alt="Praveen Reddy" class="profile-pic" loading="lazy">
+    <h1 class="typing-text"></h1>
+    <p>Welcome to my Study Hub — your one-stop place to explore academic notes, projects, and B.Tech resources.</p>
     <a href="materials.html" class="btn">Explore Materials</a>
   </section>
 
-   <footer>
+  <footer>
     © 2025 Praveen Reddy | All rights reserved.
   </footer>
-<!-- StudyHub AI Chatbot (glowing & clickable) -->
-<style>
-  /* Chat bubble glow + animation */
-  @keyframes pulseGlow {
-    0% {
-      box-shadow: 0 0 0 rgba(0, 212, 255, 0.6);
+
+  <!-- Floating Chat Button -->
+  <button id="chatToggle">💬</button>
+
+  <!-- Botpress Chat Embed -->
+  <iframe
+    id="chatFrame"
+    src="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/10/29/12/20251029121857-3C9TNLRZ.json">
+  </iframe>
+
+  <script>
+    // Chat toggle
+    const chatToggle = document.getElementById("chatToggle");
+    const chatFrame = document.getElementById("chatFrame");
+    let chatVisible = false;
+    chatToggle.addEventListener("click", () => {
+      chatVisible = !chatVisible;
+      chatFrame.style.display = chatVisible ? "block" : "none";
+    });
+
+    // Typing effect
+    const text = "Hello, I’m Praveen Reddy 👋 Welcome to my Study Hub ✨";
+    const typingElement = document.querySelector(".typing-text");
+    let index = 0;
+    function type() {
+      if (index < text.length) {
+        typingElement.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(type, 100);
+      } else {
+        setTimeout(() => {
+          typingElement.innerHTML = "";
+          index = 0;
+          type();
+        }, 2000);
+      }
     }
-    50% {
-      box-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
-    }
-    100% {
-      box-shadow: 0 0 0 rgba(0, 212, 255, 0.6);
-    }
-  }
-<!-- Chat Styles -->
-
-#chatToggle {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #00bfff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 24px;
-  cursor: pointer;
-  transition: transform 0.3s;
-  z-index: 10000;
-}
-#chatToggle:hover {
-  transform: scale(1.1);
-}
-#chatFrame {
-  position: fixed;
-  bottom: 100px;
-  right: 25px;
-  width: 380px;
-  height: 520px;
-  border: none;
-  border-radius: 15px;
-  z-index: 9999;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-  display: none;
-}
-</style>
-
-<!-- Chat button -->
-<button id="chatToggle">💬</button>
-
-<!-- Botpress Chat Embed -->
-<iframe
-  id="chatFrame"
-  src="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/10/29/12/20251029121857-3C9TNLRZ.json">
-</iframe>
-
-<script>
-const chatToggle = document.getElementById("chatToggle");
-const chatFrame = document.getElementById("chatFrame");
-let chatVisible = false;
-chatToggle.addEventListener("click", () => {
-  chatVisible = !chatVisible;
-  chatFrame.style.display = chatVisible ? "block" : "none";
-});
-</script>
-
-<script>
-const text = "Hello, I’m Praveen Reddy 👋  Welcome to my Study Hub ✨";
-const typingElement = document.querySelector(".typing-text");
-let index = 0;
-function type() {
-  if (index < text.length) {
-    typingElement.innerHTML += text.charAt(index);
-    index++;
-    setTimeout(type, 100);
-  } else {
-    setTimeout(() => {
-      typingElement.innerHTML = "";
-      index = 0;
-      type();
-    }, 2000);
-  }
-}
-type();
-</script>
+    type();
+  </script>
 </body>
 </html>
 
