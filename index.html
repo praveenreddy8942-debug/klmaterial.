@@ -7,7 +7,7 @@
   <meta name="description" content="Portfolio & Study Hub by Praveen Reddy — Explore CSE materials, projects, and learning resources." />
   <link rel="icon" href="profile.jpg" type="image/jpeg" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  
+
   <style>
     * {
       margin: 0;
@@ -210,230 +210,33 @@
   <footer>
     © 2025 Praveen Reddy | Designed with ❤️ for learners.
   </footer>
-<!-- 🧠 Floating Glowing Chatbot -->
-<div id="chatbot-icon" title="Chat with AI 💬">💬</div>
 
-<div id="chatbot-container" class="hidden">
-  <div id="chatbot-header">
-    💬 AI Study Assistant
-    <button id="chatbot-close">✖</button>
-  </div>
-  <div id="chatbot-body">
-    <div id="chatbot-messages"></div>
-    <div id="chatbot-input-container">
-      <input type="text" id="chatbot-input" placeholder="Ask anything about CSE, notes, or topics..." />
-      <button id="chatbot-send">Send</button>
-    </div>
-  </div>
-</div>
-
-<!-- 🌟 Chatbot Styles -->
-<style>
-  /* Floating chat icon */
-  #chatbot-icon {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #00d4ff, #007bff);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 0 20px #00d4ff;
-    animation: pulseGlow 2s infinite;
-    transition: transform 0.3s;
-    z-index: 9999;
-  }
-  #chatbot-icon:hover {
-    transform: scale(1.1);
-  }
-
-  @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 15px #00d4ff; }
-    50% { box-shadow: 0 0 35px #00ffff; }
-  }
-
-  /* Chatbot window */
-  #chatbot-container {
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    width: 340px;
-    background: rgba(0, 0, 0, 0.85);
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 9999;
-    animation: fadeIn 0.3s ease;
-  }
-  #chatbot-container.hidden {
-    display: none;
-  }
-
-  #chatbot-header {
-    background: linear-gradient(90deg, #007bff, #00d4ff);
-    color: white;
-    font-weight: 600;
-    text-align: center;
-    padding: 10px;
-    position: relative;
-  }
-
-  #chatbot-close {
-    position: absolute;
-    right: 10px;
-    top: 6px;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-  }
-
-  #chatbot-body {
-    display: flex;
-    flex-direction: column;
-    height: 400px;
-  }
-
-  #chatbot-messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-  }
-
-  .bot-msg, .user-msg {
-    margin: 8px 0;
-    padding: 10px 15px;
-    border-radius: 10px;
-    max-width: 80%;
-    line-height: 1.4;
-  }
-
-  .user-msg {
-    background: #007bff;
-    align-self: flex-end;
-  }
-
-  .bot-msg {
-    background: rgba(255, 255, 255, 0.1);
-    border-left: 3px solid #00d4ff;
-  }
-
-  #chatbot-input-container {
-    display: flex;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.3);
-  }
-
-  #chatbot-input {
-    flex: 1;
-    border: none;
-    border-radius: 8px;
-    padding: 10px;
-    outline: none;
-    background: #111;
-    color: white;
-  }
-
-  #chatbot-send {
-    background: #00d4ff;
-    border: none;
-    margin-left: 8px;
-    border-radius: 8px;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  #chatbot-send:hover {
-    background: #00aaff;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
-
-<!-- 🤖 Chatbot Script -->
-<script>
-  const icon = document.getElementById("chatbot-icon");
-  const container = document.getElementById("chatbot-container");
-  const closeBtn = document.getElementById("chatbot-close");
-  const chatbotInput = document.getElementById("chatbot-input");
-  const chatbotSend = document.getElementById("chatbot-send");
-  const chatbotMessages = document.getElementById("chatbot-messages");
-
-  icon.addEventListener("click", () => {
-    container.classList.toggle("hidden");
-  });
-  closeBtn.addEventListener("click", () => {
-    container.classList.add("hidden");
-  });
-
-  function addMessage(message, sender) {
-    const msg = document.createElement("div");
-    msg.classList.add(sender === "user" ? "user-msg" : "bot-msg");
-    msg.textContent = message;
-    chatbotMessages.appendChild(msg);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  }
-
-  chatbotSend.addEventListener("click", () => {
-    const userMessage = chatbotInput.value.trim();
-    if (!userMessage) return;
-    addMessage(userMessage, "user");
-    chatbotInput.value = "";
-
-    setTimeout(() => {
-      let response = "";
-      if (userMessage.toLowerCase().includes("cse"))
-        response = "CSE means Computer Science and Engineering — it includes programming, AI, and systems.";
-      else if (userMessage.toLowerCase().includes("notes"))
-        response = "All study notes are available in the Materials section 📘";
-      else if (userMessage.toLowerCase().includes("hello"))
-        response = "Hey there 👋! How can I help you today?";
-      else
-        response = "I'm still learning! Try asking about CSE, notes, or materials.";
-
-      addMessage(response, "bot");
-    }, 600);
-  });
-</script>
-<script>
-(function(){
-  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-    window.chatbase = (...arguments) => {
-      if(!window.chatbase.q){ window.chatbase.q = [] }
-      window.chatbase.q.push(arguments)
+  <!-- ✅ Chatbase Chatbot Script (only one real chatbot) -->
+  <script>
+  (function(){
+    if(!window.chatbase || window.chatbase("getState") !== "initialized"){
+      window.chatbase = (...args) => {
+        if(!window.chatbase.q){ window.chatbase.q = [] }
+        window.chatbase.q.push(args)
+      };
+      window.chatbase = new Proxy(window.chatbase, {
+        get(target, prop){
+          if(prop === "q"){ return target.q }
+          return (...a) => target(prop, ...a)
+        }
+      })
+    }
+    const onLoad = function(){
+      const script = document.createElement("script");
+      script.src = "https://www.chatbase.co/embed.min.js";
+      script.id = "ZpkVlMr94rMHgyLpuyj8c";  // your Chatbase bot ID
+      script.domain = "www.chatbase.co";
+      document.body.appendChild(script);
     };
-    window.chatbase = new Proxy(window.chatbase, {
-      get(target, prop){
-        if(prop === "q"){ return target.q }
-        return (...args) => target(prop, ...args)
-      }
-    })
-  }
-  const onLoad = function(){
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.id = "ZpkVlMr94rMHgyLpuyj8c";  // 👈 your unique Chatbase bot ID
-    script.domain = "www.chatbase.co";
-    document.body.appendChild(script);
-  };
-  if(document.readyState === "complete"){ onLoad(); }
-  else { window.addEventListener("load", onLoad); }
-})();
-</script>
-
-
+    if(document.readyState === "complete"){ onLoad(); }
+    else { window.addEventListener("load", onLoad); }
+  })();
+  </script>
 </body>
 </html>
 
