@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://praveenreddy8942-debug.github.io/klmaterial/sitemap.xml
