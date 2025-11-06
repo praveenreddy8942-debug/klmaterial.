@@ -35,74 +35,73 @@
     © 2025 Praveen Reddy | All rights reserved.
   </footer>
 
-  <!-- Firebase Integration -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+<!-- Firebase (non-module) -->
+<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js"></script>
 
-    // ✅ Correct Firebase configuration (replace with your real keys)
-const firebaseConfig = {
-  apiKey: "AIzaSyBCLxW9w21eowVJp2anRL1mlhu48Kaz8ls",
-  authDomain: "cse-materials.firebaseapp.com",
-  projectId: "cse-materials",
-  storageBucket: "cse-materials.appspot.com", // ✅ fixed
-  messagingSenderId: "543101747849",
-  appId: "1:543101747849:web:d8b71de79e94f84af7fc58",
-  measurementId: "G-NZ0SERPS7L"
-};
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBCLxW9w21eowVJp2anRL1mlhu48Kaz8ls",
+    authDomain: "cse-materials.firebaseapp.com",
+    projectId: "cse-materials",
+    storageBucket: "cse-materials.appspot.com",
+    messagingSenderId: "543101747849",
+    appId: "1:543101747849:web:d8b71de79e94f84af7fc58",
+    measurementId: "G-NZ0SERPS7L"
+  };
 
+  firebase.initializeApp(firebaseConfig);
+  const storage = firebase.storage();
+  const materialsList = document.getElementById("materials-list");
+  const loading = document.getElementById("loading");
 
-    const app = initializeApp(firebaseConfig);
-    const storage = getStorage(app);
-    const materialsList = document.getElementById("materials-list");
-    const loading = document.getElementById("loading");
+  const subjects = {
+    "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
+    "DM": "Discrete Mathematics (DM)",
+    "PSC": "Problem Solving Through C (PSC)",
+    "DSD": "Digital System Design (DSD)"
+  };
 
-    const subjects = {
-      "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
-      "DM": "Discrete Mathematics (DM)",
-      "PSC": "Problem Solving Through C (PSC)",
-      "DSD": "Digital System Design (DSD)"
-    };
+  const storageRef = storage.ref();
 
-    const storageRef = ref(storage);
+  storageRef.listAll()
+    .then(res => {
+      loading.style.display = "none";
+      const grouped = {};
 
-    listAll(storageRef)
-      .then(res => {
-        loading.style.display = "none";
-        const grouped = {};
+      res.items.forEach(itemRef => {
+        const name = itemRef.name;
+        const key = Object.keys(subjects).find(k => name.toUpperCase().includes(k)) || "Other";
+        const subject = subjects[key] || "Other Materials";
+        grouped[subject] = grouped[subject] || [];
+        grouped[subject].push(itemRef);
+      });
 
-        res.items.forEach(itemRef => {
-          const name = itemRef.name;
-          const key = Object.keys(subjects).find(k => name.toUpperCase().includes(k)) || "Other";
-          const subject = subjects[key] || "Other Materials";
-          grouped[subject] = grouped[subject] || [];
-          grouped[subject].push(itemRef);
+      for (const subject in grouped) {
+        const section = document.createElement("section");
+        section.className = "material-box";
+        section.innerHTML = `<h2>${subject}</h2>`;
+
+        grouped[subject].forEach(item => {
+          item.getDownloadURL().then(url => {
+            const name = item.name.replace(/_/g, " ");
+            const link = document.createElement("a");
+            link.href = url;
+            link.textContent = "📄 " + name;
+            link.className = "download-btn";
+            link.target = "_blank";
+            section.appendChild(link);
+          });
         });
 
-        for (const subject in grouped) {
-          const section = document.createElement("section");
-          section.className = "material-box";
-          section.innerHTML = `<h2>${subject}</h2>`;
-
-          grouped[subject].forEach(item => {
-            getDownloadURL(item).then(url => {
-              const name = item.name.replace(/_/g, " ");
-              const link = document.createElement("a");
-              link.href = url;
-              link.textContent = "📄 " + name;
-              link.className = "download-btn";
-              link.target = "_blank";
-              section.appendChild(link);
-            });
-          });
-          materialsList.appendChild(section);
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        loading.textContent = "⚠️ Error loading materials. Please check Firebase configuration.";
-      });
-  </script>
+        materialsList.appendChild(section);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      loading.textContent = "⚠️ Error loading materials. Please check Firebase setup.";
+    });
+</script>
 
   <!-- Inline style just for visual improvement -->
   <style>
