@@ -1,17 +1,19 @@
-// Import Firebase modules
+document.addEventListener("DOMContentLoaded", () => {
+  const subjects = document.querySelectorAll(".subject");
+  subjects.forEach((el, i) => {
+    el.style.animationDelay = `${i * 0.1}s`;
+// script.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-// Firebase config
+// 🔥 Replace with YOUR actual Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBCLxW9w21eowVJp2anRL1mlhu48Kaz8ls",
+  apiKey: "YOUR_API_KEY",
   authDomain: "cse-materials.firebaseapp.com",
   projectId: "cse-materials",
-  storageBucket: "cse-materials.appspot.com", // ✅ fixed
-  messagingSenderId: "543101747849",
-  appId: "1:543101747849:web:d8b71de79e94f84af7fc58",
-  measurementId: "G-NZ0SERPS7L"
+  storageBucket: "cse-materials.firebasestorage.app",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 // Initialize Firebase
