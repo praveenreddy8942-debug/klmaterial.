@@ -150,6 +150,22 @@
         gap: 15px;
       }
     }
+
+    /* ✅ Chatbase mobile size fix */
+    @media (max-width: 768px) {
+      iframe[title="Chatbase Chatbot"] {
+        position: fixed !important;
+        bottom: 80px !important;
+        right: 20px !important;
+        width: 90% !important;
+        height: 70vh !important;
+        max-height: 500px !important;
+        border-radius: 16px !important;
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        z-index: 99999 !important;
+        transition: all 0.3s ease-in-out;
+      }
+    }
   </style>
 </head>
 
@@ -211,31 +227,31 @@
     © 2025 Praveen Reddy | Designed with ❤️ for learners.
   </footer>
 
-  <!-- ✅ Chatbase Chatbot Script (only one real chatbot) -->
+  <!-- ✅ Chatbase Chatbot Script -->
   <script>
-  (function(){
-    if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-      window.chatbase = (...args) => {
-        if(!window.chatbase.q){ window.chatbase.q = [] }
-        window.chatbase.q.push(args)
+    (function(){
+      if(!window.chatbase || window.chatbase("getState") !== "initialized"){
+        window.chatbase = (...args) => {
+          if(!window.chatbase.q){ window.chatbase.q = [] }
+          window.chatbase.q.push(args)
+        };
+        window.chatbase = new Proxy(window.chatbase, {
+          get(target, prop){
+            if(prop === "q"){ return target.q }
+            return (...a) => target(prop, ...a)
+          }
+        })
+      }
+      const onLoad = function(){
+        const script = document.createElement("script");
+        script.src = "https://www.chatbase.co/embed.min.js";
+        script.id = "ZpkVlMr94rMHgyLpuyj8c";  // Your Chatbase bot ID
+        script.domain = "www.chatbase.co";
+        document.body.appendChild(script);
       };
-      window.chatbase = new Proxy(window.chatbase, {
-        get(target, prop){
-          if(prop === "q"){ return target.q }
-          return (...a) => target(prop, ...a)
-        }
-      })
-    }
-    const onLoad = function(){
-      const script = document.createElement("script");
-      script.src = "https://www.chatbase.co/embed.min.js";
-      script.id = "ZpkVlMr94rMHgyLpuyj8c";  // your Chatbase bot ID
-      script.domain = "www.chatbase.co";
-      document.body.appendChild(script);
-    };
-    if(document.readyState === "complete"){ onLoad(); }
-    else { window.addEventListener("load", onLoad); }
-  })();
+      if(document.readyState === "complete"){ onLoad(); }
+      else { window.addEventListener("load", onLoad); }
+    })();
   </script>
 </body>
 </html>
