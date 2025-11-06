@@ -1,148 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Study Materials | Praveen Reddy</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- ✨ Chatbase Bubble Glow Animation -->
-  <style>
-    #chatbase-bubble, .chatbase-bubble, .chatbase-launcher {
-      animation: pulseGlow 2s infinite ease-in-out;
-      box-shadow: 0 0 15px #00d4ff;
-      border-radius: 50%;
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow: 0 0 15px #00d4ff;
-        transform: scale(1);
-      }
-      50% {
-        box-shadow: 0 0 30px #00ffff;
-        transform: scale(1.08);
-      }
-    }
-  </style>
-</head>
-
-<body>
+   <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
   <header>
     <nav>
       <h2>📘 Study Hub</h2>
-      <a href="index.html">Home</a>
-      <a href="materials.html" class="active">Materials</a>
-      <a href="roadmap.html">🎯B.Tech Roadmap</a>
-      <a href="about.html">About</a>
+        <a href="index.html">Home</a>
+       <a href="materials.html">Materials</a>
+       <a href="roadmap.html">🎯B.Tech Roadmap</a>
+         <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <main class="materials-container">
     <h1>📚 CSE Study Materials</h1>
+    
     <div id="materials-list">
       <!-- Firebase script will load subjects here -->
     </div>
   </main>
 
   <footer>
-    <p>© 2025 Praveen Reddy | All rights reserved.</p>
+     <p>© 2025 Praveen Reddy | All rights reserved.</p>
   </footer>
-
-  <!-- Firebase Scripts -->
+      <!-- Firebase Scripts -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-    // ✅ Correct Firebase configuration
+     // 🔥 Replace with your Firebase config
     const firebaseConfig = {
-      apiKey: "AIzaSyBCLxW9w21eowVJp2anRL1mlhu48Kaz8ls",
+      apiKey: "YOUR_API_KEY",
       authDomain: "cse-materials.firebaseapp.com",
       projectId: "cse-materials",
-      storageBucket: "cse-materials.firebaseapp.com",
-      messagingSenderId: "543101747849",
-      appId: "1:543101747849:web:d8b71de79e94f84af7fc58",
-      measurementId: "G-NZ0SERPS7L"
+      storageBucket: "cse-materials.firebasestorage.app",
+      messagingSenderId: "YOUR_ID",
+      appId: "YOUR_APP_ID"
     };
-
+      const loading = document.getElementById("loading");
     const app = initializeApp(firebaseConfig);
     const storage = getStorage(app);
-    const materialsList = document.getElementById("materials-list");
+ const materialsList = document.getElementById("materials-list");
     const storageRef = ref(storage);
-
-    // 🔹 Subject mapping (filename keyword → Subject Name)
+ // 🔹 Subject mapping (filename keyword → Subject Name)
     const subjects = {
       "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
       "DM": "Discrete Mathematics (DM)",
-      "PSC": "Problem Solving Through C (PSC)",
-      "DSD": "Digital System Design (DSD)"
+      "PSC": "Problem Solving Through C",
+      "DSD": "Digital System Design (DSD)",
     };
-
-    // Fetch files
+      // Fetch files
     listAll(storageRef)
       .then((res) => {
         materialsList.innerHTML = "";
+          // Group files by subject
         const grouped = {};
-
         res.items.forEach((itemRef) => {
           const name = itemRef.name;
-          const key = Object.keys(subjects).find(k => name.toUpperCase().includes(k)) || "Other";
-          const subject = subjects[key] || "Other Materials";
-          grouped[subject] = grouped[subject] || [];
+          const matchKey = Object.keys(subjects).find(key => name.toUpperCase().includes(key));
+          const subject = matchKey ? subjects[matchKey] : "Other Materials";
+          if (!grouped[subject]) grouped[subject] = [];
           grouped[subject].push(itemRef);
         });
-
+   // Display subject-wise
         for (const subject in grouped) {
           const section = document.createElement("section");
           section.className = "material-box";
           section.innerHTML = `<h2>${subject}</h2>`;
-
-          grouped[subject].forEach(item => {
-            getDownloadURL(item).then(url => {
-              const name = item.name.replace(/_/g, " ");
+grouped[subject].forEach((itemRef) => {
+            getDownloadURL(itemRef).then((url) => {
+              const name = itemRef.name.replace(/_/g, " ");
               const link = document.createElement("a");
               link.href = url;
               link.textContent = "📄 " + name;
-              link.className = "download-btn";
               link.target = "_blank";
+              link.className = "download-btn";
               section.appendChild(link);
             });
           });
-          materialsList.appendChild(section);
+                materialsList.appendChild(section);
         }
       })
-      .catch((err) => {
-        console.error(err);
-        materialsList.textContent = "⚠️ Error loading materials. Please check Firebase configuration.";
+      .catch((error) => {
+        console.error(error);
+        materialsList.innerHTML = `<p>⚠️ Error loading materials. Check Firebase config or rules.</p>`;
       });
-  </script>
-
-  <!-- ✅ Chatbase Chatbot Script -->
-  <script>
-    (function(){
-      if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-        window.chatbase = (...args) => {
-          if(!window.chatbase.q){ window.chatbase.q = [] }
-          window.chatbase.q.push(args)
-        };
-        window.chatbase = new Proxy(window.chatbase, {
-          get(target, prop){
-            if(prop === "q"){ return target.q }
-            return (...a) => target(prop, ...a)
-          }
-        })
-      }
-      const onLoad = function(){
-        const script = document.createElement("script");
-        script.src = "https://www.chatbase.co/embed.min.js";
-        script.id = "ZpkVlMr94rMHgyLpuyj8c";  // your Chatbase bot ID
-        script.domain = "www.chatbase.co";
-        document.body.appendChild(script);
-      };
-      if(document.readyState === "complete"){ onLoad(); }
-      else { window.addEventListener("load", onLoad); }
-    })();
   </script>
 </body>
 </html>
