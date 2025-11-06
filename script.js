@@ -5,7 +5,7 @@ import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.co
 // ✅ Your actual Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBCLxW9w21eowVJp2anRL1mlhu48Kaz8ls",
-  authDomain: "cse-materials.firebaseapp.com",
+  authDomain: "cse-materials.firebasestorage.app",
   projectId: "cse-materials",
 storageBucket: "cse-materials.firebasestorage.app",
   messagingSenderId: "543101747849",
