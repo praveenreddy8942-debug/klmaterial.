@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Praveen Reddy | Study Hub</title>
-  <meta name="description" content="Portfolio & Study Hub by Praveen Reddy — Explore CSE materials, projects, and learning resources.">
-  <link rel="icon" href="profile.jpg" type="image/jpeg">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="description" content="Portfolio & Study Hub by Praveen Reddy — Explore CSE materials, projects, and learning resources." />
+  <link rel="icon" href="profile.jpg" type="image/jpeg" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  
   <style>
     * {
       margin: 0;
@@ -21,6 +22,7 @@
       overflow-x: hidden;
     }
 
+    /* Header */
     header {
       background: rgba(0, 0, 0, 0.3);
       position: sticky;
@@ -47,9 +49,10 @@
       color: #00d4ff;
     }
 
+    /* Hero Section */
     .hero {
       text-align: center;
-      padding: 70px 20px;
+      padding: 80px 20px;
     }
 
     .hero img {
@@ -57,7 +60,7 @@
       height: 180px;
       border-radius: 50%;
       border: 4px solid #00d4ff;
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
       margin-bottom: 20px;
     }
 
@@ -87,6 +90,7 @@
       color: #007bff;
     }
 
+    /* Section Styling */
     section {
       padding: 60px 20px;
       max-width: 1000px;
@@ -100,6 +104,7 @@
       color: #00d4ff;
     }
 
+    /* Cards Layout */
     .skills, .projects, .study {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -111,7 +116,7 @@
       padding: 20px;
       border-radius: 12px;
       text-align: center;
-      transition: transform 0.3s;
+      transition: transform 0.3s, background 0.3s;
     }
 
     .card:hover {
@@ -119,6 +124,7 @@
       background: rgba(255, 255, 255, 0.15);
     }
 
+    /* Footer */
     footer {
       text-align: center;
       padding: 25px 0;
@@ -128,6 +134,7 @@
       margin-top: 60px;
     }
 
+    /* Responsive */
     @media (max-width: 600px) {
       .hero h1 {
         font-size: 1.8rem;
@@ -137,9 +144,15 @@
         width: 140px;
         height: 140px;
       }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <nav>
@@ -152,7 +165,7 @@
   </header>
 
   <section class="hero">
-    <img src="profile.jpg" alt="Praveen Reddy">
+    <img src="profile.jpg" alt="Praveen Reddy" />
     <h1>Praveen Reddy</h1>
     <p>B.Tech CSE | Web Developer | Data Enthusiast</p>
     <a href="materials.html" class="btn">Explore Study Materials</a>
