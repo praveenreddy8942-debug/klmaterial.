@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Study Materials | Praveen Reddy</title>
-   <link rel="stylesheet" href="style.css" />
-   <style>
-/* ✨ Chatbase Bubble Glow Animation */
-#chatbase-bubble, .chatbase-bubble, .chatbase-launcher {
-  animation: pulseGlow 2s infinite ease-in-out;
-  box-shadow: 0 0 15px #00d4ff;
-  border-radius: 50%;
-}
+  <link rel="stylesheet" href="style.css" />
 
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 15px #00d4ff;
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 30px #00ffff;
-    transform: scale(1.08);
-  }
-}
-</style>
+  <style>
+    /* 💫 Chatbase Bubble Animation */
+    #chatbase-bubble, .chatbase-bubble, .chatbase-launcher {
+      animation: pulseGlow 2s infinite ease-in-out;
+      box-shadow: 0 0 15px #00d4ff;
+      border-radius: 50%;
+    }
 
-  </head>
-  <body>
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 15px #00d4ff;
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 30px #00ffff;
+        transform: scale(1.08);
+      }
+    }
+
+    /* 📱 Mobile Chatbox Size Control */
+    @media (max-width: 768px) {
+      iframe[title="Chatbase Chatbot"] {
+        position: fixed !important;
+        bottom: 70px !important;
+        right: 10px !important;
+        width: 90% !important;
+        height: 70vh !important;
+        border-radius: 16px !important;
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        z-index: 99999 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
   <header>
     <nav>
       <h2>📘 Study Hub</h2>
-        <a href="index.html">Home</a>
-       <a href="materials.html">Materials</a>
-       <a href="roadmap.html">🎯B.Tech Roadmap</a>
-         <a href="about.html">About</a>
+      <a href="index.html">Home</a>
+      <a href="materials.html">Materials</a>
+      <a href="roadmap.html">🎯B.Tech Roadmap</a>
+      <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <main class="materials-container">
     <h1>📚 CSE Study Materials</h1>
-    
     <div id="materials-list">
       <!-- Firebase script will load subjects here -->
     </div>
   </main>
 
   <footer>
-     <p>© 2025 Praveen Reddy | All rights reserved.</p>
+    <p>© 2025 Praveen Reddy | All rights reserved.</p>
   </footer>
-      <!-- Firebase Scripts -->
+
+  <!-- 🔥 Firebase Script -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-     // 🔥 Replace with your Firebase config
+    // Your Firebase configuration
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "cse-materials.firebaseapp.com",
@@ -63,24 +78,26 @@
       messagingSenderId: "YOUR_ID",
       appId: "YOUR_APP_ID"
     };
-      const loading = document.getElementById("loading");
+
     const app = initializeApp(firebaseConfig);
     const storage = getStorage(app);
- const materialsList = document.getElementById("materials-list");
+    const materialsList = document.getElementById("materials-list");
     const storageRef = ref(storage);
- // 🔹 Subject mapping (filename keyword → Subject Name)
+
+    // Subject mapping (file name keywords → subject titles)
     const subjects = {
       "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
       "DM": "Discrete Mathematics (DM)",
       "PSC": "Problem Solving Through C",
-      "DSD": "Digital System Design (DSD)",
+      "DSD": "Digital System Design (DSD)"
     };
-      // Fetch files
+
+    // Fetch and display files
     listAll(storageRef)
       .then((res) => {
         materialsList.innerHTML = "";
-          // Group files by subject
         const grouped = {};
+
         res.items.forEach((itemRef) => {
           const name = itemRef.name;
           const matchKey = Object.keys(subjects).find(key => name.toUpperCase().includes(key));
@@ -88,12 +105,12 @@
           if (!grouped[subject]) grouped[subject] = [];
           grouped[subject].push(itemRef);
         });
-   // Display subject-wise
+
         for (const subject in grouped) {
           const section = document.createElement("section");
           section.className = "material-box";
           section.innerHTML = `<h2>${subject}</h2>`;
-grouped[subject].forEach((itemRef) => {
+          grouped[subject].forEach((itemRef) => {
             getDownloadURL(itemRef).then((url) => {
               const name = itemRef.name.replace(/_/g, " ");
               const link = document.createElement("a");
@@ -104,7 +121,7 @@ grouped[subject].forEach((itemRef) => {
               section.appendChild(link);
             });
           });
-                materialsList.appendChild(section);
+          materialsList.appendChild(section);
         }
       })
       .catch((error) => {
@@ -112,33 +129,33 @@ grouped[subject].forEach((itemRef) => {
         materialsList.innerHTML = `<p>⚠️ Error loading materials. Check Firebase config or rules.</p>`;
       });
   </script>
-     <!-- ✅ Chatbase Chatbot Script -->
-<script>
-(function(){
-  if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-    window.chatbase = (...args) => {
-      if(!window.chatbase.q){ window.chatbase.q = [] }
-      window.chatbase.q.push(args)
-    };
-    window.chatbase = new Proxy(window.chatbase, {
-      get(target, prop){
-        if(prop === "q"){ return target.q }
-        return (...a) => target(prop, ...a)
-      }
-    })
-  }
-  const onLoad = function(){
-    const script = document.createElement("script");
-    script.src = "https://www.chatbase.co/embed.min.js";
-    script.id = "ZpkVlMr94rMHgyLpuyj8c";
-    script.domain = "www.chatbase.co";
-    document.body.appendChild(script);
-  };
-  if(document.readyState === "complete"){ onLoad(); }
-  else { window.addEventListener("load", onLoad); }
-})();
-</script>
 
+  <!-- 💬 Chatbase Chatbot -->
+  <script>
+    (function() {
+      if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+        window.chatbase = (...args) => {
+          if (!window.chatbase.q) { window.chatbase.q = [] }
+          window.chatbase.q.push(args)
+        };
+        window.chatbase = new Proxy(window.chatbase, {
+          get(target, prop) {
+            if (prop === "q") return target.q;
+            return (...a) => target(prop, ...a);
+          }
+        });
+      }
+      const onLoad = function() {
+        const script = document.createElement("script");
+        script.src = "https://www.chatbase.co/embed.min.js";
+        script.id = "ZpkVlMr94rMHgyLpuyj8c"; // your Chatbase chatbot ID
+        script.domain = "www.chatbase.co";
+        document.body.appendChild(script);
+      };
+      if (document.readyState === "complete") onLoad();
+      else window.addEventListener("load", onLoad);
+    })();
+  </script>
 </body>
 </html>
 
