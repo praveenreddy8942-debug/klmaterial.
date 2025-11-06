@@ -297,6 +297,41 @@
     background: #00aaff;
   }
 </style>
+<script>
+  const chatbotInput = document.getElementById("chatbot-input");
+  const chatbotSend = document.getElementById("chatbot-send");
+  const chatbotMessages = document.getElementById("chatbot-messages");
+
+  function addMessage(message, sender) {
+    const msg = document.createElement("div");
+    msg.classList.add(sender === "user" ? "user-msg" : "bot-msg");
+    msg.textContent = message;
+    chatbotMessages.appendChild(msg);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  chatbotSend.addEventListener("click", async () => {
+    const userMessage = chatbotInput.value.trim();
+    if (!userMessage) return;
+    addMessage(userMessage, "user");
+    chatbotInput.value = "";
+
+    // Simulated AI Response
+    setTimeout(() => {
+      let response = "";
+      if (userMessage.toLowerCase().includes("cse")) {
+        response = "CSE stands for Computer Science and Engineering — it covers programming, data structures, algorithms, and more.";
+      } else if (userMessage.toLowerCase().includes("notes")) {
+        response = "You can find all subject notes in the Materials section of this site.";
+      } else if (userMessage.toLowerCase().includes("hello")) {
+        response = "Hello! How can I assist you with your studies today?";
+      } else {
+        response = "I’m still learning! Try asking about CSE, notes, or study materials.";
+      }
+      addMessage(response, "bot");
+    }, 600);
+  });
+</script>
 
 </body>
 </html>
