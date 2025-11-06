@@ -210,6 +210,94 @@
   <footer>
     © 2025 Praveen Reddy | Designed with ❤️ for learners.
   </footer>
+  <!-- 🧠 Advanced AI Chatbot Widget -->
+<div id="chatbot-container">
+  <div id="chatbot-header">💬 AI Study Assistant</div>
+  <div id="chatbot-body">
+    <div id="chatbot-messages"></div>
+    <div id="chatbot-input-container">
+      <input type="text" id="chatbot-input" placeholder="Ask anything about CSE, notes, or topics..." />
+      <button id="chatbot-send">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- Chatbot Styles -->
+<style>
+  #chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 340px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+  }
+  #chatbot-header {
+    background: linear-gradient(90deg, #007bff, #00d4ff);
+    text-align: center;
+    padding: 10px;
+    font-weight: 600;
+  }
+  #chatbot-body {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+  }
+  #chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+  }
+  .bot-msg, .user-msg {
+    margin: 8px 0;
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 80%;
+    line-height: 1.4;
+  }
+  .user-msg {
+    background: #007bff;
+    align-self: flex-end;
+  }
+  .bot-msg {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #00d4ff;
+  }
+  #chatbot-input-container {
+    display: flex;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  #chatbot-input {
+    flex: 1;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    outline: none;
+    background: #111;
+    color: white;
+  }
+  #chatbot-send {
+    background: #00d4ff;
+    border: none;
+    margin-left: 8px;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  #chatbot-send:hover {
+    background: #00aaff;
+  }
+</style>
+
 </body>
 </html>
 
