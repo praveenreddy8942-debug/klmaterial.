@@ -1,16 +1,14 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// Import Firebase modules
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBCLxW9w21eowVJp2anRL1mlhu48Kaz8ls",
   authDomain: "cse-materials.firebaseapp.com",
   projectId: "cse-materials",
-  storageBucket: "cse-materials.firebasestorage.app",
+  storageBucket: "cse-materials.appspot.com", // ✅ fixed
   messagingSenderId: "543101747849",
   appId: "1:543101747849:web:d8b71de79e94f84af7fc58",
   measurementId: "G-NZ0SERPS7L"
@@ -19,16 +17,13 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
-// Get reference to materials container
+// Reference materials container
 const materialsList = document.getElementById("materials-list");
 const storageRef = ref(storage);
 
-// Fetch and display all files
+// Fetch and display files
 listAll(storageRef)
   .then((res) => {
     materialsList.innerHTML = "";
@@ -56,3 +51,4 @@ listAll(storageRef)
         ⚠️ Error loading materials. Please check your Firebase setup.
       </p>`;
   });
+
