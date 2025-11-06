@@ -1,7 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const subjects = document.querySelectorAll(".subject");
-  subjects.forEach((el, i) => {
-    el.style.animationDelay = `${i * 0.1}s`;
+
 // script.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
