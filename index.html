@@ -3,61 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="IIivucjImgfyNokTdp6R5fIvEj-ldenPftwE4-z330w" />
   <title>Praveen Reddy | Study Hub</title>
-
-  <!-- SEO and Metadata -->
-  <meta name="description" content="Study Hub by Praveen Reddy — Explore B.Tech materials, notes, and roadmaps for engineering students.">
-  <meta name="author" content="Praveen Reddy">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://praveenreddy8942-debug.github.io/klmaterial/">
-
-  <!-- Open Graph for Social Previews -->
-  <meta property="og:title" content="Praveen Reddy | Study Hub">
-  <meta property="og:description" content="Explore B.Tech materials, notes, and roadmaps for engineering students.">
-  <meta property="og:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg">
-  <meta property="og:url" content="https://praveenreddy8942-debug.github.io/klmaterial/">
-
-  <!-- Favicon -->
+  <meta name="description" content="Portfolio & Study Hub by Praveen Reddy — Explore CSE materials, projects, and learning resources.">
   <link rel="icon" href="profile.jpg" type="image/jpeg">
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNF82SLGR7"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-JNF82SLGR7');
-  </script>
-
-  <!-- Main Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: radial-gradient(circle at top, #021B79, #0575E6);
-      color: white;
-      text-align: center;
-      min-height: 100vh;
-      scroll-behavior: smooth;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: linear-gradient(135deg, #001f3f, #007bff);
+      overflow-x: hidden;
     }
 
     header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 15px 0;
       background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 10;
+      padding: 15px 0;
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
     }
 
     nav a {
-      color: white;
+      color: #fff;
       text-decoration: none;
-      margin: 0 20px;
       font-weight: 500;
       transition: color 0.3s;
     }
@@ -66,118 +47,95 @@
       color: #00d4ff;
     }
 
-    .profile-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 60px;
+    .hero {
+      text-align: center;
+      padding: 70px 20px;
     }
 
-    .profile-pic {
+    .hero img {
       width: 180px;
-      height: 230px;
+      height: 180px;
       border-radius: 50%;
       border: 4px solid #00d4ff;
-      object-fit: cover;
-      box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
-      transition: transform 0.4s ease;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+      margin-bottom: 20px;
     }
 
-    .profile-pic:hover {
-      transform: scale(1.08);
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
     }
 
-    h1 {
-      margin-top: 25px;
-      font-size: 2rem;
-    }
-
-    p {
-      font-size: 1.1rem;
+    .hero p {
       color: #cce7ff;
-      max-width: 600px;
-      margin: 10px auto 20px;
+      font-size: 1rem;
+      margin-bottom: 25px;
     }
 
     .btn {
       background: #00d4ff;
-      color: black;
-      padding: 12px 28px;
+      color: #001f3f;
+      padding: 12px 25px;
       border-radius: 30px;
-      font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s;
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+      font-weight: 600;
+      transition: 0.3s;
     }
 
     .btn:hover {
-      background: white;
-      color: #021B79;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+      background: #fff;
+      color: #007bff;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      color: #00d4ff;
+    }
+
+    .skills, .projects, .study {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
     }
 
     footer {
-      margin-top: 70px;
-      padding: 20px 0;
-      font-size: 0.9rem;
+      text-align: center;
+      padding: 25px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
       color: #b0e0ff;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* Chat bubble glow + animation */
-    @keyframes pulseGlow {
-      0% { box-shadow: 0 0 0 rgba(0, 212, 255, 0.6); }
-      50% { box-shadow: 0 0 25px rgba(0, 212, 255, 0.8); }
-      100% { box-shadow: 0 0 0 rgba(0, 212, 255, 0.6); }
-    }
-
-    #chatToggle {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: #00bfff;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 24px;
-      cursor: pointer;
-      animation: pulseGlow 2s infinite;
-      transition: transform 0.3s;
-      z-index: 10000;
-    }
-
-    #chatToggle:hover {
-      transform: scale(1.1);
-    }
-
-    #chatFrame {
-      position: fixed;
-      bottom: 100px;
-      right: 25px;
-      width: 380px;
-      height: 520px;
-      border: none;
-      border-radius: 15px;
-      z-index: 9999;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-      display: none;
+      font-size: 0.9rem;
+      margin-top: 60px;
     }
 
     @media (max-width: 600px) {
-      nav a {
-        margin: 0 10px;
-        font-size: 0.9rem;
+      .hero h1 {
+        font-size: 1.8rem;
       }
-      .profile-pic {
+
+      .hero img {
         width: 140px;
-        height: 180px;
-      }
-      #chatFrame {
-        width: 90%;
-        right: 5%;
-        height: 450px;
+        height: 140px;
       }
     }
   </style>
@@ -185,63 +143,60 @@
 <body>
   <header>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="index.html" class="active">Home</a>
       <a href="materials.html">Materials</a>
-      <a href="roadmap.html">🎯 B.Tech Roadmap</a>
+      <a href="roadmap.html">Roadmap</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <section class="profile-section">
-    <img src="profile.jpg" alt="Praveen Reddy" class="profile-pic" loading="lazy">
-    <h1 class="typing-text"></h1>
-    <p>Welcome to my Study Hub — your one-stop place to explore academic notes, projects, and B.Tech resources.</p>
-    <a href="materials.html" class="btn">Explore Materials</a>
+  <section class="hero">
+    <img src="profile.jpg" alt="Praveen Reddy">
+    <h1>Praveen Reddy</h1>
+    <p>B.Tech CSE | Web Developer | Data Enthusiast</p>
+    <a href="materials.html" class="btn">Explore Study Materials</a>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p style="text-align:center; max-width:700px; margin:auto; color:#cce7ff;">
+      I’m a CSE student passionate about data, design, and development. 
+      This Study Hub is my personal project — built to help students explore 
+      notes, roadmaps, and tech resources easily.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="card">💻 Web Development</div>
+      <div class="card">📊 Data Analysis</div>
+      <div class="card">⚙️ Problem Solving (C, Python)</div>
+      <div class="card">☁️ Firebase & GitHub</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">📚 Study Hub Website</div>
+      <div class="card">🧠 Data Visualization Dashboard</div>
+      <div class="card">📱 Responsive Portfolio Design</div>
+    </div>
+  </section>
+
+  <section id="study">
+    <h2>Study Materials</h2>
+    <div class="study">
+      <div class="card"><a href="materials.html" class="btn">View Materials</a></div>
+      <div class="card"><a href="roadmap.html" class="btn">View B.Tech Roadmap</a></div>
+    </div>
   </section>
 
   <footer>
-    © 2025 Praveen Reddy | All rights reserved.
+    © 2025 Praveen Reddy | Designed with ❤️ for learners.
   </footer>
-
-  <!-- Floating Chat Button -->
-  <button id="chatToggle">💬</button>
-
-  <!-- Botpress Chat Embed -->
-  <iframe
-    id="chatFrame"
-    src="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/10/29/12/20251029121857-3C9TNLRZ.json">
-  </iframe>
-
-  <script>
-    // Chat toggle
-    const chatToggle = document.getElementById("chatToggle");
-    const chatFrame = document.getElementById("chatFrame");
-    let chatVisible = false;
-    chatToggle.addEventListener("click", () => {
-      chatVisible = !chatVisible;
-      chatFrame.style.display = chatVisible ? "block" : "none";
-    });
-
-    // Typing effect
-    const text = "Hello, I’m Praveen Reddy 👋 Welcome to my Study Hub ✨";
-    const typingElement = document.querySelector(".typing-text");
-    let index = 0;
-    function type() {
-      if (index < text.length) {
-        typingElement.innerHTML += text.charAt(index);
-        index++;
-        setTimeout(type, 100);
-      } else {
-        setTimeout(() => {
-          typingElement.innerHTML = "";
-          index = 0;
-          type();
-        }, 2000);
-      }
-    }
-    type();
-  </script>
 </body>
 </html>
 
