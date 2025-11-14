@@ -1,9 +1,147 @@
+/*
+====================================
+  KLMaterial Study Hub - Styles
+====================================
+  Responsive Breakpoints:
+  - Mobile: 0-600px (Extra small)
+  - Mobile: 601-768px (Small)
+  - Tablet: 769-1199px (Medium)
+  - Desktop: 1200px+ (Large)
+  
+  Features:
+  - Animated backgrounds
+  - Touch-optimized interactions
+  - Search functionality
+  - Firebase integration
+  - Chatbase chatbot support
+====================================
+*/
+
 /* General */
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   color: white;
   background: radial-gradient(circle at 20% 20%, #001d3d, #000814);
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve touch targets for mobile */
+a, button, .download-btn {
+  -webkit-tap-highlight-color: rgba(0, 212, 255, 0.3);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animated Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(0, 191, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0, 53, 102, 0.15) 0%, transparent 50%);
+  animation: backgroundPulse 15s ease-in-out infinite;
+  z-index: -2;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(45deg, rgba(0, 212, 255, 0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 212, 255, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0, 212, 255, 0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0, 212, 255, 0.03) 75%);
+  background-size: 60px 60px;
+  background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+  animation: gridMove 20s linear infinite;
+  z-index: -1;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+  }
+  100% {
+    background-position: 60px 60px, 60px 90px, 90px 30px, 30px 60px;
+  }
+}
+
+/* ===== Desktop/PC Optimizations ===== */
+@media (min-width: 1200px) {
+  .center-nav a {
+    font-size: 1.15em;
+    margin: 0 25px;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+  }
+  
+  .skills-grid,
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .materials-container {
+    max-width: 1100px;
+  }
+  
+  .material-box {
+    padding: 30px;
+  }
+  
+  .roadmap-section {
+    max-width: 1000px;
+    padding: 40px 50px;
+  }
+  
+  .page-content {
+    max-width: 1000px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1199px) {
+  /* Tablet Styles */
+  .skills-grid,
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  
+  .materials-container {
+    max-width: 950px;
+  }
 }
 
 /* Centered Navbar */
@@ -123,6 +261,43 @@ footer {
   .hero h1 {
     font-size: 1.6em;
   }
+  
+  /* Mobile Navigation */
+  .center-nav {
+    padding: 10px 0;
+  }
+  
+  .center-nav li {
+    margin: 5px 10px;
+    display: inline-block;
+  }
+  
+  .center-nav a {
+    font-size: 0.95em;
+    padding: 8px 12px;
+    display: inline-block;
+  }
+  
+  /* Mobile Content Adjustments */
+  .hero {
+    padding-top: 100px;
+  }
+  
+  section {
+    padding: 15px;
+    margin: 15px auto;
+  }
+  
+  .skills-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 0 10px;
+  }
+  
+  .card {
+    padding: 15px;
+  }
 }
 /* ===== Materials Page Styling ===== */
 body {
@@ -182,6 +357,68 @@ nav ul li a.active {
   color: #66b3ff;
 }
 
+/* Search Bar Styling */
+.search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 50px 15px 20px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 50px;
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search-input:focus {
+  border-color: #00d4ff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.clear-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 0, 0, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.no-results {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 40px;
+  text-align: center;
+}
+
 .material-box {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -204,11 +441,16 @@ nav ul li a.active {
   padding: 10px 20px;
   border-radius: 25px;
   text-decoration: none;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+  min-height: auto;
 }
 
 .download-btn:hover {
   background: #339cff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.5);
 }
 
 footer {
@@ -616,6 +858,62 @@ footer {
   .roadmap-section h2 {
     font-size: 1.4rem;
   }
+  
+  /* Search bar mobile adjustments */
+  .search-container {
+    margin: 0 15px 30px;
+  }
+  
+  .search-input {
+    padding: 12px 45px 12px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .materials-container {
+    padding: 20px 10px;
+  }
+  
+  .materials-container h1 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+  
+  .material-box {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+  }
+  
+  .material-box h2 {
+    font-size: 1.3rem;
+  }
+  
+  .download-btn {
+    display: block;
+    margin: 10px 0;
+    padding: 12px 15px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  
+  /* About & Contact Pages Mobile */
+  .page-content {
+    margin: 40px 15px;
+    padding: 0 10px;
+  }
+  
+  .page-content h1 {
+    font-size: 1.6rem;
+  }
+  
+  .about-card, .contact-card {
+    padding: 20px 15px;
+  }
+  
+  /* Footer Mobile */
+  footer {
+    padding: 15px 10px;
+    font-size: 0.85rem;
+  }
 }
 
 /* ===== Portfolio Homepage Layout (Study Hub) ===== */
@@ -675,14 +973,54 @@ footer {
 @media (max-width: 600px) {
   .hero h1 { font-size: 1.8rem; }
   .hero p { font-size: 0.95rem; }
+  
+  /* Extra small devices */
+  .center-nav li {
+    margin: 5px 8px;
+  }
+  
+  .center-nav a {
+    font-size: 0.85em;
+    padding: 6px 10px;
+  }
+  
+  .search-input {
+    font-size: 0.85rem;
+    padding: 10px 40px 10px 12px;
+  }
+  
+  .materials-container h1 {
+    font-size: 1.4rem;
+  }
+  
+  .material-box h2 {
+    font-size: 1.1rem;
+  }
+  
+  .page-content h1 {
+    font-size: 1.4rem;
+  }
+  
+  nav h2 {
+    font-size: 1.2rem;
+  }
 }
 
-<meta property="og:title" content="Praveen Reddy | Study Hub">
-<meta property="og:description" content="Explore CSE materials, projects, and learning resources.">
-<meta property="og:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg">
-<meta property="og:url" content="https://praveenreddy8942-debug.github.io/klmaterial/">
-<meta name="twitter:card" content="summary_large_image">
-
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    padding-top: 80px;
+  }
+  
+  .center-nav {
+    padding: 8px 0;
+  }
+  
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+  }
+}
 
 
 
