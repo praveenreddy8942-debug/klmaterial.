@@ -21,10 +21,22 @@
   <meta property="twitter:description" content="Connect with me through email, GitHub, LinkedIn, Facebook, or join our WhatsApp study group." />
   <meta property="twitter:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg" />
   
-  <link rel="stylesheet" href="style.css" />
+  <!-- Cache Control for iOS -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  
+  <link rel="stylesheet" href="style.css?v=2.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   
   <style>
+    /* iOS Safari Background Fix */
+    body {
+      background: radial-gradient(circle at 20% 20%, #001d3d, #000814) !important;
+      min-height: 100vh !important;
+      min-height: -webkit-fill-available !important;
+    }
+    
     .contact-info li {
       display: flex;
       align-items: center;
