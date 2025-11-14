@@ -994,12 +994,28 @@ footer {
   
   /* Search bar mobile adjustments */
   .search-container {
-    margin: 0 15px 30px;
+    margin: 0 10px 20px;
+    max-width: 100%;
+    padding: 0 5px;
   }
   
   .search-input {
     padding: 12px 45px 12px 15px;
-    font-size: 0.9rem;
+    font-size: 14px;
+    border-radius: 30px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .clear-btn {
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+  
+  .search-input::placeholder {
+    font-size: 13px;
   }
   
   .materials-container {
