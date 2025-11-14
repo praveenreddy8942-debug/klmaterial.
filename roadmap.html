@@ -4,6 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🎯 4-Year B.Tech Roadmap | Praveen Reddy</title>
+  <meta name="description" content="Complete 4-year B.Tech roadmap with skills, projects, and learning resources for each year. Focus on skills, not just assignments." />
+  <meta name="keywords" content="B.Tech roadmap, engineering career path, skills development, CSE roadmap, learning resources" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://praveenreddy8942-debug.github.io/klmaterial/roadmap.html" />
+  <meta property="og:title" content="4-Year B.Tech Roadmap | Career Guidance" />
+  <meta property="og:description" content="Complete career roadmap for B.Tech students with year-wise skills, projects, and learning resources." />
+  <meta property="og:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://praveenreddy8942-debug.github.io/klmaterial/roadmap.html" />
+  <meta property="twitter:title" content="4-Year B.Tech Roadmap | Career Guidance" />
+  <meta property="twitter:description" content="Complete career roadmap for B.Tech students with year-wise skills, projects, and learning resources." />
+  <meta property="twitter:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg" />
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -154,5 +171,28 @@
   <footer>
     <p>© 2025 Praveen Reddy | All rights reserved.</p>
   </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to top">↑</button>
+
+  <script>
+    // Back to Top functionality
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
 </body>
 </html>

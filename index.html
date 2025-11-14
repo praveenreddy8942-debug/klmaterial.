@@ -3,8 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KLMaterial | Study Hub</title>
+  <title>KLMaterial | Study Hub</title>
   <meta name="description" content="Portfolio & Study Hub by Praveen Reddy — Explore CSE materials, projects, and learning resources." />
+  <meta name="keywords" content="CSE materials, study hub, engineering notes, B.Tech resources, Praveen Reddy, computer science, programming" />
+  <meta name="author" content="Praveen Reddy" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://praveenreddy8942-debug.github.io/klmaterial/" />
+  <meta property="og:title" content="KLMaterial | Study Hub" />
+  <meta property="og:description" content="Explore CSE materials, projects, and learning resources for B.Tech students." />
+  <meta property="og:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://praveenreddy8942-debug.github.io/klmaterial/" />
+  <meta property="twitter:title" content="KLMaterial | Study Hub" />
+  <meta property="twitter:description" content="Explore CSE materials, projects, and learning resources for B.Tech students." />
+  <meta property="twitter:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg" />
+  
   <link rel="icon" href="profile.jpg" type="image/jpeg" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
@@ -253,7 +270,28 @@
       else { window.addEventListener("load", onLoad); }
     })();
   </script>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to top">↑</button>
+
+  <script>
+    // Back to Top functionality
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
 </body>
 </html>
-
- 

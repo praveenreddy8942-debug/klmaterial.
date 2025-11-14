@@ -4,6 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Study Materials | Praveen Reddy</title>
+  <meta name="description" content="Access CSE study materials including BEEC, DM, PSC, DSD notes, question papers, and learning resources." />
+  <meta name="keywords" content="CSE materials, BEEC notes, Discrete Mathematics, Problem Solving C, DSD, engineering study materials" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://praveenreddy8942-debug.github.io/klmaterial/materials.html" />
+  <meta property="og:title" content="Study Materials | CSE Resources" />
+  <meta property="og:description" content="Download CSE study materials, notes, and question papers for BEEC, DM, PSC, and DSD." />
+  <meta property="og:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://praveenreddy8942-debug.github.io/klmaterial/materials.html" />
+  <meta property="twitter:title" content="Study Materials | CSE Resources" />
+  <meta property="twitter:description" content="Download CSE study materials, notes, and question papers for BEEC, DM, PSC, and DSD." />
+  <meta property="twitter:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg" />
+  
   <link rel="stylesheet" href="style.css" />
 
   <style>
@@ -55,8 +72,34 @@
 
   <main class="materials-container">
     <h1>📚 CSE Study Materials</h1>
+    
+    <!-- Category Filter Buttons -->
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-category="all">All Subjects</button>
+      <button class="filter-btn" data-category="BEEC">BEEC</button>
+      <button class="filter-btn" data-category="DM">Discrete Math</button>
+      <button class="filter-btn" data-category="PSC">PSC</button>
+      <button class="filter-btn" data-category="DSD">DSD</button>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input 
+        type="text" 
+        id="search-bar" 
+        class="search-input" 
+        placeholder="🔍 Search materials by name or subject..."
+        autocomplete="off"
+      />
+      <button id="clear-search" class="clear-btn" style="display: none;">✕</button>
+    </div>
+    
     <div id="materials-list">
-      <!-- Firebase script will load subjects here -->
+      <!-- Loading Animation -->
+      <div class="loader-container">
+        <div class="loader"></div>
+        <p class="loader-text">Loading materials...</p>
+      </div>
     </div>
   </main>
 
@@ -82,6 +125,9 @@
     const app = initializeApp(firebaseConfig);
     const storage = getStorage(app);
     const materialsList = document.getElementById("materials-list");
+    const searchBar = document.getElementById("search-bar");
+    const clearBtn = document.getElementById("clear-search");
+    const filterButtons = document.querySelectorAll(".filter-btn");
     const storageRef = ref(storage);
 
     // Subject mapping (file name keywords → subject titles)
@@ -92,10 +138,117 @@
       "DSD": "Digital System Design (DSD)"
     };
 
+    let allMaterials = {}; // Store all materials for search
+    let activeCategory = "all"; // Track active filter
+
+    // Filter button functionality
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        // Update active button
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        
+        // Get category and filter
+        activeCategory = btn.dataset.category;
+        searchBar.value = "";
+        clearBtn.style.display = "none";
+        
+        if (activeCategory === "all") {
+          displayMaterials(allMaterials);
+        } else {
+          const filtered = {};
+          for (const subject in allMaterials) {
+            if (subject.includes(activeCategory)) {
+              filtered[subject] = allMaterials[subject];
+            }
+          }
+          displayMaterials(filtered);
+        }
+      });
+    });
+
+    // Search functionality
+    searchBar.addEventListener("input", (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      clearBtn.style.display = query ? "block" : "none";
+      
+      // Reset category filter when searching
+      if (query) {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        filterButtons[0].classList.add("active");
+        activeCategory = "all";
+      }
+      
+      filterMaterials(query);
+    });
+
+    clearBtn.addEventListener("click", () => {
+      searchBar.value = "";
+      clearBtn.style.display = "none";
+      filterMaterials("");
+    });
+
+    function filterMaterials(query) {
+      if (!query) {
+        // Show materials based on active category
+        if (activeCategory === "all") {
+          displayMaterials(allMaterials);
+        } else {
+          const filtered = {};
+          for (const subject in allMaterials) {
+            if (subject.includes(activeCategory)) {
+              filtered[subject] = allMaterials[subject];
+            }
+          }
+          displayMaterials(filtered);
+        }
+        return;
+      }
+
+      const filtered = {};
+      for (const subject in allMaterials) {
+        const matchingItems = allMaterials[subject].filter(item => {
+          const fileName = item.name.replace(/_/g, " ").toLowerCase();
+          const subjectName = subject.toLowerCase();
+          return fileName.includes(query) || subjectName.includes(query);
+        });
+        
+        if (matchingItems.length > 0) {
+          filtered[subject] = matchingItems;
+        }
+      }
+
+      if (Object.keys(filtered).length === 0) {
+        materialsList.innerHTML = `<p class="no-results">🔍 No materials found for "${query}"</p>`;
+      } else {
+        displayMaterials(filtered);
+      }
+    }
+
+    function displayMaterials(grouped) {
+      materialsList.innerHTML = "";
+      for (const subject in grouped) {
+        const section = document.createElement("section");
+        section.className = "material-box";
+        section.innerHTML = `<h2>${subject}</h2>`;
+        grouped[subject].forEach((itemRef) => {
+          getDownloadURL(itemRef).then((url) => {
+            const name = itemRef.name.replace(/_/g, " ");
+            const link = document.createElement("a");
+            link.href = url;
+            link.textContent = "📄 " + name;
+            link.target = "_blank";
+            link.className = "download-btn";
+            section.appendChild(link);
+          });
+        });
+        materialsList.appendChild(section);
+      }
+    }
+
     // Fetch and display files
     listAll(storageRef)
       .then((res) => {
-        materialsList.innerHTML = "";
         const grouped = {};
 
         res.items.forEach((itemRef) => {
@@ -106,27 +259,12 @@
           grouped[subject].push(itemRef);
         });
 
-        for (const subject in grouped) {
-          const section = document.createElement("section");
-          section.className = "material-box";
-          section.innerHTML = `<h2>${subject}</h2>`;
-          grouped[subject].forEach((itemRef) => {
-            getDownloadURL(itemRef).then((url) => {
-              const name = itemRef.name.replace(/_/g, " ");
-              const link = document.createElement("a");
-              link.href = url;
-              link.textContent = "📄 " + name;
-              link.target = "_blank";
-              link.className = "download-btn";
-              section.appendChild(link);
-            });
-          });
-          materialsList.appendChild(section);
-        }
+        allMaterials = grouped; // Store for search
+        displayMaterials(grouped);
       })
       .catch((error) => {
         console.error(error);
-        materialsList.innerHTML = `<p>⚠️ Error loading materials. Check Firebase config or rules.</p>`;
+        materialsList.innerHTML = `<p class="no-results">⚠️ Error loading materials. Check Firebase config or rules.</p>`;
       });
   </script>
 
@@ -156,6 +294,28 @@
       else window.addEventListener("load", onLoad);
     })();
   </script>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to top">↑</button>
+
+  <script>
+    // Back to Top functionality
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
 </body>
 </html>
-

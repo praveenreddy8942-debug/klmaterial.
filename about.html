@@ -4,6 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Praveen Reddy</title>
+  <meta name="description" content="Learn about Praveen Reddy and the mission behind KLMaterial Study Hub." />
+  <meta name="keywords" content="Praveen Reddy, about, CSE student, study hub creator" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content="https://praveenreddy8942-debug.github.io/klmaterial/about.html" />
+  <meta property="og:title" content="About Praveen Reddy | Study Hub Creator" />
+  <meta property="og:description" content="Learn about Praveen Reddy and the mission behind KLMaterial Study Hub." />
+  <meta property="og:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:url" content="https://praveenreddy8942-debug.github.io/klmaterial/about.html" />
+  <meta property="twitter:title" content="About Praveen Reddy | Study Hub Creator" />
+  <meta property="twitter:description" content="Learn about Praveen Reddy and the mission behind KLMaterial Study Hub." />
+  <meta property="twitter:image" content="https://praveenreddy8942-debug.github.io/klmaterial/profile.jpg" />
+  
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -37,5 +54,28 @@
   <footer>
     <p>© 2025 Praveen Reddy | All rights reserved.</p>
   </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to top">↑</button>
+
+  <script>
+    // Back to Top functionality
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
 </body>
 </html>
