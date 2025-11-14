@@ -55,6 +55,19 @@
 
   <main class="materials-container">
     <h1>📚 CSE Study Materials</h1>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input 
+        type="text" 
+        id="search-bar" 
+        class="search-input" 
+        placeholder="🔍 Search materials by name or subject..."
+        autocomplete="off"
+      />
+      <button id="clear-search" class="clear-btn" style="display: none;">✕</button>
+    </div>
+    
     <div id="materials-list">
       <!-- Firebase script will load subjects here -->
     </div>
@@ -82,6 +95,8 @@
     const app = initializeApp(firebaseConfig);
     const storage = getStorage(app);
     const materialsList = document.getElementById("materials-list");
+    const searchBar = document.getElementById("search-bar");
+    const clearBtn = document.getElementById("clear-search");
     const storageRef = ref(storage);
 
     // Subject mapping (file name keywords → subject titles)
@@ -91,6 +106,68 @@
       "PSC": "Problem Solving Through C",
       "DSD": "Digital System Design (DSD)"
     };
+
+    let allMaterials = {}; // Store all materials for search
+
+    // Search functionality
+    searchBar.addEventListener("input", (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      clearBtn.style.display = query ? "block" : "none";
+      filterMaterials(query);
+    });
+
+    clearBtn.addEventListener("click", () => {
+      searchBar.value = "";
+      clearBtn.style.display = "none";
+      filterMaterials("");
+    });
+
+    function filterMaterials(query) {
+      if (!query) {
+        displayMaterials(allMaterials);
+        return;
+      }
+
+      const filtered = {};
+      for (const subject in allMaterials) {
+        const matchingItems = allMaterials[subject].filter(item => {
+          const fileName = item.name.replace(/_/g, " ").toLowerCase();
+          const subjectName = subject.toLowerCase();
+          return fileName.includes(query) || subjectName.includes(query);
+        });
+        
+        if (matchingItems.length > 0) {
+          filtered[subject] = matchingItems;
+        }
+      }
+
+      if (Object.keys(filtered).length === 0) {
+        materialsList.innerHTML = `<p class="no-results">🔍 No materials found for "${query}"</p>`;
+      } else {
+        displayMaterials(filtered);
+      }
+    }
+
+    function displayMaterials(grouped) {
+      materialsList.innerHTML = "";
+      for (const subject in grouped) {
+        const section = document.createElement("section");
+        section.className = "material-box";
+        section.innerHTML = `<h2>${subject}</h2>`;
+        grouped[subject].forEach((itemRef) => {
+          getDownloadURL(itemRef).then((url) => {
+            const name = itemRef.name.replace(/_/g, " ");
+            const link = document.createElement("a");
+            link.href = url;
+            link.textContent = "📄 " + name;
+            link.target = "_blank";
+            link.className = "download-btn";
+            section.appendChild(link);
+          });
+        });
+        materialsList.appendChild(section);
+      }
+    }
 
     // Fetch and display files
     listAll(storageRef)
@@ -106,23 +183,8 @@
           grouped[subject].push(itemRef);
         });
 
-        for (const subject in grouped) {
-          const section = document.createElement("section");
-          section.className = "material-box";
-          section.innerHTML = `<h2>${subject}</h2>`;
-          grouped[subject].forEach((itemRef) => {
-            getDownloadURL(itemRef).then((url) => {
-              const name = itemRef.name.replace(/_/g, " ");
-              const link = document.createElement("a");
-              link.href = url;
-              link.textContent = "📄 " + name;
-              link.target = "_blank";
-              link.className = "download-btn";
-              section.appendChild(link);
-            });
-          });
-          materialsList.appendChild(section);
-        }
+        allMaterials = grouped; // Store for search
+        displayMaterials(grouped);
       })
       .catch((error) => {
         console.error(error);
@@ -158,4 +220,5 @@
   </script>
 </body>
 </html>
+
 
