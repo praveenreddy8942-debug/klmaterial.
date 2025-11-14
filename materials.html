@@ -43,47 +43,6 @@
   <link rel="stylesheet" href="style.css?v=2.1" />
 
   <style>
-    /* ===== Mobile Accordion for iPhone (and small screens) ===== */
-    @media (max-width: 600px) {
-      .materials-container h1 { margin-bottom: 10px; }
-      .filter-buttons { gap: 8px; flex-wrap: wrap; }
-      .search-container { margin: 12px 0 6px; }
-
-      .accordion { width: 100%; margin-top: 8px; }
-      .accordion-item {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 12px;
-        margin-bottom: 10px;
-        overflow: hidden;
-      }
-      .accordion-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 14px 16px;
-        cursor: pointer;
-        -webkit-tap-highlight-color: rgba(0, 212, 255, 0.2);
-      }
-      .accordion-title {
-        font-size: 15px;
-        font-weight: 600;
-        color: #b0e0ff;
-      }
-      .accordion-chevron {
-        font-size: 18px;
-        color: #00d4ff;
-        transition: transform 0.2s ease;
-      }
-      .accordion-item.open .accordion-chevron { transform: rotate(90deg); }
-      .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; padding: 0 12px; }
-      .accordion-links { display: flex; flex-direction: column; gap: 10px; padding: 10px 4px 14px; }
-      .accordion-links .download-btn { width: 100%; justify-content: flex-start; padding: 10px 12px; font-size: 14px; }
-
-      /* Hide desktop material boxes on small screens */
-      .material-box { display: none !important; }
-    }
     /* 💫 Chatbase Bubble Animation */
     #chatbase-bubble, .chatbase-bubble, .chatbase-launcher {
       animation: pulseGlow 2s infinite ease-in-out;
@@ -290,96 +249,18 @@
 
     function displayMaterials(grouped) {
       materialsList.innerHTML = "";
-
-      const isMobile = window.matchMedia('(max-width: 600px)').matches;
-
-      if (isMobile) {
-        // Build mobile accordion UI
-        const acc = document.createElement('div');
-        acc.className = 'accordion';
-
-        Object.keys(grouped).forEach((subject) => {
-          const item = document.createElement('div');
-          item.className = 'accordion-item';
-
-          const header = document.createElement('div');
-          header.className = 'accordion-header';
-          header.setAttribute('role', 'button');
-          header.setAttribute('tabindex', '0');
-          header.setAttribute('aria-expanded', 'false');
-
-          const title = document.createElement('div');
-          title.className = 'accordion-title';
-          title.textContent = subject; // straight subject name
-
-          const chev = document.createElement('div');
-          chev.className = 'accordion-chevron';
-          chev.textContent = '›'; // iOS-style chevron
-
-          header.appendChild(title);
-          header.appendChild(chev);
-
-          const content = document.createElement('div');
-          content.className = 'accordion-content';
-
-          const linksWrap = document.createElement('div');
-          linksWrap.className = 'accordion-links';
-
-          // Load links
-          grouped[subject].forEach((itemRef) => {
-            getDownloadURL(itemRef).then((url) => {
-              const name = itemRef.name.replace(/_/g, ' ');
-              const link = document.createElement('a');
-              link.href = url;
-              link.textContent = name; // straight file name (no emoji)
-              link.target = '_blank';
-              link.className = 'download-btn';
-              linksWrap.appendChild(link);
-            });
-          });
-
-          content.appendChild(linksWrap);
-
-          // Toggle behavior
-          const toggle = () => {
-            const open = item.classList.toggle('open');
-            header.setAttribute('aria-expanded', open ? 'true' : 'false');
-            if (open) {
-              // Defer max-height until links render
-              setTimeout(() => {
-                content.style.maxHeight = content.scrollHeight + 'px';
-              }, 50);
-            } else {
-              content.style.maxHeight = '0px';
-            }
-          };
-          header.addEventListener('click', toggle);
-          header.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-          });
-
-          item.appendChild(header);
-          item.appendChild(content);
-          acc.appendChild(item);
-        });
-
-        materialsList.appendChild(acc);
-        return;
-      }
-
-      // Desktop/Tablet (existing section layout)
       for (const subject in grouped) {
-        const section = document.createElement('section');
-        section.className = 'material-box';
+        const section = document.createElement("section");
+        section.className = "material-box";
         section.innerHTML = `<h2>${subject}</h2>`;
         grouped[subject].forEach((itemRef) => {
           getDownloadURL(itemRef).then((url) => {
-            const name = itemRef.name.replace(/_/g, ' ');
-            const link = document.createElement('a');
+            const name = itemRef.name.replace(/_/g, " ");
+            const link = document.createElement("a");
             link.href = url;
-            link.textContent = '📄 ' + name;
-            link.target = '_blank';
-            link.className = 'download-btn';
+            link.textContent = "📄 " + name;
+            link.target = "_blank";
+            link.className = "download-btn";
             section.appendChild(link);
           });
         });
