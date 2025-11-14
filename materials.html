@@ -88,7 +88,6 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </div>
-      <button class="nav-next" aria-label="More">›</button>
     </nav>
   </header>
 
@@ -321,17 +320,6 @@
   <button id="backToTop" title="Back to top">↑</button>
 
   <script>
-    // Mobile nav chevron scroll
-    (function(){
-      const track = document.querySelector('header nav .nav-track');
-      const next = document.querySelector('header nav .nav-next');
-      if (track && next) {
-        next.addEventListener('click', () => {
-          track.scrollBy({ left: 160, behavior: 'smooth' });
-        });
-      }
-    })();
-
     // Back to Top functionality
     const backToTopBtn = document.getElementById('backToTop');
     

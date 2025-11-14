@@ -815,25 +815,6 @@ nav a:hover {
     max-width: 100%;
   }
   .nav-track::-webkit-scrollbar { display: none; }
-  .nav-next {
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.25);
-    background: rgba(0,0,0,0.35);
-    color: #00d4ff;
-    font-size: 18px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    backdrop-filter: blur(6px);
-  }
-  .nav-next:active { transform: translateY(-50%) scale(0.96); }
 }
 
 /* ===== Main Section ===== */

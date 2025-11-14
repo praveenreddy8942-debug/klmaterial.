@@ -464,7 +464,6 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </div>
-      <button class="nav-next" aria-label="More">›</button>
     </nav>
   </header>
 
@@ -517,17 +516,6 @@
 
   <!-- ✅ Chatbase Chatbot Script -->
   <script>
-    // Mobile nav chevron scroll
-    (function(){
-      const track = document.querySelector('header nav .nav-track');
-      const next = document.querySelector('header nav .nav-next');
-      if (track && next) {
-        next.addEventListener('click', () => {
-          track.scrollBy({ left: 160, behavior: 'smooth' });
-        });
-      }
-    })();
-
     (function(){
       if(!window.chatbase || window.chatbase("getState") !== "initialized"){
         window.chatbase = (...args) => {
