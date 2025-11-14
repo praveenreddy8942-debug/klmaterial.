@@ -18,27 +18,25 @@
 */
 
 /* General */
+html {
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(circle at 20% 20%, #001d3d, #000814);
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   color: white;
   background: radial-gradient(circle at 20% 20%, #001d3d, #000814);
+  background-attachment: fixed;
   position: relative;
   overflow-x: hidden;
   min-height: 100vh;
+  height: 100%;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Force height for iOS Safari */
-html {
-  height: 100%;
-  width: 100%;
-}
-
-html body {
-  height: 100%;
-  width: 100%;
 }
 
 /* Improve touch targets for mobile */
@@ -1231,15 +1229,18 @@ footer {
 
 /* Additional mobile background fixes */
 @media (max-width: 768px) {
-  body {
+  html, body {
+    background: radial-gradient(circle at 20% 20%, #001d3d, #000814);
     background-attachment: scroll;
   }
   
   body::before,
   body::after {
-    position: absolute;
+    position: fixed;
     height: 100%;
     min-height: 100vh;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }
 

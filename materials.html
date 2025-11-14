@@ -1,8 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background: radial-gradient(circle at 20% 20%, #001d3d, #000814);">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Critical CSS - Load First -->
+  <style>
+    html, body {
+      background: radial-gradient(circle at 20% 20%, #001d3d, #000814) !important;
+      background-attachment: fixed !important;
+      min-height: 100vh !important;
+      min-height: -webkit-fill-available !important;
+      margin: 0 !important;
+    }
+  </style>
+  
   <title>Study Materials | Praveen Reddy</title>
   <meta name="description" content="Access CSE study materials including BEEC, DM, PSC, DSD notes, question papers, and learning resources." />
   <meta name="keywords" content="CSE materials, BEEC notes, Discrete Mathematics, Problem Solving C, DSD, engineering study materials" />
@@ -26,16 +38,9 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   
-  <link rel="stylesheet" href="style.css?v=2.0" />
+  <link rel="stylesheet" href="style.css?v=2.1" />
 
   <style>
-    /* iOS Safari Background Fix */
-    body {
-      background: radial-gradient(circle at 20% 20%, #001d3d, #000814) !important;
-      min-height: 100vh !important;
-      min-height: -webkit-fill-available !important;
-    }
-    
     /* 💫 Chatbase Bubble Animation */
     #chatbase-bubble, .chatbase-bubble, .chatbase-launcher {
       animation: pulseGlow 2s infinite ease-in-out;
