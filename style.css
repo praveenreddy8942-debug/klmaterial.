@@ -30,6 +30,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Force height for iOS Safari */
+html {
+  height: 100%;
+  width: 100%;
+}
+
+html body {
+  height: 100%;
+  width: 100%;
+}
+
 /* Improve touch targets for mobile */
 a, button, .download-btn {
   -webkit-tap-highlight-color: rgba(0, 212, 255, 0.3);
@@ -47,6 +58,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   background: 
     radial-gradient(circle at 10% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 90% 80%, rgba(0, 191, 255, 0.08) 0%, transparent 50%),
@@ -54,6 +66,10 @@ body::before {
   animation: backgroundPulse 15s ease-in-out infinite;
   z-index: -2;
   pointer-events: none;
+  /* iOS Safari fixes */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 body::after {
@@ -63,6 +79,7 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   background-image: 
     linear-gradient(45deg, rgba(0, 212, 255, 0.03) 25%, transparent 25%),
     linear-gradient(-45deg, rgba(0, 212, 255, 0.03) 25%, transparent 25%),
@@ -74,6 +91,10 @@ body::after {
   z-index: -1;
   opacity: 0.4;
   pointer-events: none;
+  /* iOS Safari fixes */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 @keyframes backgroundPulse {
@@ -1183,6 +1204,42 @@ footer {
   }
   50% {
     opacity: 0.7;
+  }
+}
+
+/* ===== iOS Safari Specific Fixes ===== */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari viewport fix */
+  body {
+    min-height: -webkit-fill-available;
+  }
+  
+  html {
+    height: -webkit-fill-available;
+  }
+  
+  /* Ensure background animations work on iOS */
+  body::before,
+  body::after {
+    position: fixed;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+}
+
+/* Additional mobile background fixes */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+  
+  body::before,
+  body::after {
+    position: absolute;
+    height: 100%;
+    min-height: 100vh;
   }
 }
 
