@@ -191,8 +191,40 @@
       height: 180px;
       border-radius: 50%;
       border: 4px solid #00d4ff;
-      box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+      box-shadow: 
+        0 0 20px rgba(0, 212, 255, 0.6),
+        0 0 40px rgba(0, 212, 255, 0.4),
+        0 0 60px rgba(0, 191, 255, 0.3),
+        0 0 80px rgba(0, 150, 255, 0.2);
       margin-bottom: 20px;
+      animation: profileGlow 3s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+
+    .hero img:hover {
+      transform: scale(1.05);
+      box-shadow: 
+        0 0 30px rgba(0, 212, 255, 0.8),
+        0 0 60px rgba(0, 212, 255, 0.6),
+        0 0 90px rgba(0, 191, 255, 0.4),
+        0 0 120px rgba(0, 150, 255, 0.3);
+    }
+
+    @keyframes profileGlow {
+      0%, 100% {
+        box-shadow: 
+          0 0 20px rgba(0, 212, 255, 0.6),
+          0 0 40px rgba(0, 212, 255, 0.4),
+          0 0 60px rgba(0, 191, 255, 0.3),
+          0 0 80px rgba(0, 150, 255, 0.2);
+      }
+      50% {
+        box-shadow: 
+          0 0 30px rgba(0, 212, 255, 0.8),
+          0 0 50px rgba(0, 212, 255, 0.6),
+          0 0 70px rgba(0, 191, 255, 0.5),
+          0 0 100px rgba(0, 150, 255, 0.3);
+      }
     }
 
     .hero h1 {
