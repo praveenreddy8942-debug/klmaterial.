@@ -21,15 +21,14 @@
 html {
   height: 100%;
   width: 100%;
-  background: radial-gradient(circle at 20% 20%, #001d3d, #000814);
+  background: #000814;
 }
 
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   color: white;
-  background: radial-gradient(circle at 20% 20%, #001d3d, #000814);
-  background-attachment: fixed;
+  background: transparent;
   position: relative;
   overflow-x: hidden;
   min-height: 100vh;
@@ -58,6 +57,7 @@ body::before {
   height: 100%;
   min-height: 100vh;
   background: 
+    radial-gradient(circle at 20% 20%, #001d3d, #000814),
     radial-gradient(circle at 10% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 90% 80%, rgba(0, 191, 255, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, rgba(0, 53, 102, 0.15) 0%, transparent 50%);
@@ -1229,9 +1229,12 @@ footer {
 
 /* Additional mobile background fixes */
 @media (max-width: 768px) {
-  html, body {
-    background: radial-gradient(circle at 20% 20%, #001d3d, #000814);
-    background-attachment: scroll;
+  html {
+    background: #000814;
+  }
+  
+  body {
+    background: transparent;
   }
   
   body::before,
