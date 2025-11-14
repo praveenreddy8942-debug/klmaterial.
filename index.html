@@ -306,11 +306,125 @@
       .hero img {
         width: 140px;
         height: 140px;
+        box-shadow: 
+          0 0 15px rgba(0, 212, 255, 0.7),
+          0 0 30px rgba(0, 212, 255, 0.5),
+          0 0 45px rgba(0, 191, 255, 0.3);
+      }
+
+      @keyframes profileGlow {
+        0%, 100% {
+          box-shadow: 
+            0 0 15px rgba(0, 212, 255, 0.7),
+            0 0 30px rgba(0, 212, 255, 0.5),
+            0 0 45px rgba(0, 191, 255, 0.3);
+        }
+        50% {
+          box-shadow: 
+            0 0 20px rgba(0, 212, 255, 0.9),
+            0 0 40px rgba(0, 212, 255, 0.7),
+            0 0 60px rgba(0, 191, 255, 0.5);
+        }
+      }
+
+      .hero {
+        padding: 60px 15px;
       }
 
       nav {
         flex-wrap: wrap;
         gap: 15px;
+        padding: 0 10px;
+      }
+
+      nav a {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+      }
+
+      .cards {
+        gap: 15px;
+      }
+
+      .card {
+        padding: 15px;
+      }
+
+      section {
+        padding: 40px 15px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      /* Reduce seasonal animation count for mobile */
+      .snowflake:nth-child(n+30),
+      .leaf:nth-child(n+20),
+      .petal:nth-child(n+15),
+      .firefly:nth-child(n+10) {
+        display: none;
+      }
+    }
+
+    /* Tablet optimization */
+    @media (min-width: 601px) and (max-width: 1024px) {
+      .hero img {
+        width: 160px;
+        height: 160px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      section {
+        padding: 50px 20px;
+      }
+    }
+
+    /* Desktop optimization */
+    @media (min-width: 1025px) {
+      .hero {
+        padding: 100px 20px;
+      }
+
+      .hero img {
+        width: 200px;
+        height: 200px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      section {
+        max-width: 1200px;
+        padding: 60px 40px;
+      }
+
+      nav a {
+        font-size: 1.1rem;
+        padding: 10px 15px;
+      }
+
+      .btn {
+        padding: 14px 30px;
+        font-size: 1.05rem;
       }
     }
 
