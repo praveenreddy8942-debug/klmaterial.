@@ -5,6 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | Praveen Reddy</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <style>
+    .contact-info li {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      margin: 15px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-info li:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(5px);
+    }
+    
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    
+    .contact-info li:hover .contact-icon {
+      transform: scale(1.1);
+    }
+    
+    /* Brand Colors */
+    .email-icon { background: linear-gradient(135deg, #EA4335, #D32F2F); }
+    .github-icon { background: linear-gradient(135deg, #333, #000); }
+    .linkedin-icon { background: linear-gradient(135deg, #0077B5, #005582); }
+    .facebook-icon { background: linear-gradient(135deg, #1877F2, #0C5FB3); }
+    .whatsapp-icon { background: linear-gradient(135deg, #25D366, #1DA851); }
+    
+    .contact-info a {
+      color: #00d4ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-info a:hover {
+      color: #fff;
+    }
+    
+    .contact-info strong {
+      min-width: 100px;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -26,27 +83,47 @@
          Whether it’s for materials, discussions, or feedback — I’d love to connect with you. 🚀</p>
 
       <ul class="contact-info">
-        <li>📧 <strong>Email:</strong> 
+        <li>
+          <div class="contact-icon email-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <strong>Email:</strong> 
           <a href="mailto:praveenreddy8942@gmail.com">praveenreddy8942@gmail.com</a>
         </li>
 
-        <li>💻 <strong>GitHub:</strong> 
+        <li>
+          <div class="contact-icon github-icon">
+            <i class="fab fa-github"></i>
+          </div>
+          <strong>GitHub:</strong> 
           <a href="https://github.com/praveenreddy8942-debug" target="_blank">github.com/praveenreddy8942</a>
         </li>
 
-        <li>💼 <strong>LinkedIn:</strong> 
+        <li>
+          <div class="contact-icon linkedin-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </div>
+          <strong>LinkedIn:</strong> 
           <a href="https://www.linkedin.com/in/praveen-reddy-37b0a6365?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">
             linkedin.com/in/praveenreddy
           </a>
         </li>
 
-        <li>📘 <strong>Facebook:</strong> 
+        <li>
+          <div class="contact-icon facebook-icon">
+            <i class="fab fa-facebook-f"></i>
+          </div>
+          <strong>Facebook:</strong> 
           <a href="https://facebook.com/share/1FbC72ZtwF/?mibextid=wwXIfr" target="_blank">
             facebook.com/share/1FbC72ZtwF
           </a>
         </li>
 
-        <li>💬 <strong>WhatsApp Group:</strong> 
+        <li>
+          <div class="contact-icon whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <strong>WhatsApp Group:</strong> 
           <a href="https://chat.whatsapp.com/LWNBaMmNNuSH08ztjFg39B?mode=wwt" target="_blank">
             Join Our Study Group
           </a>
