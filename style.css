@@ -801,8 +801,9 @@ nav a:hover {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 8px;
+    overflow-x: auto;
   }
   .nav-track {
     display: flex;
@@ -811,10 +812,24 @@ nav a:hover {
     white-space: nowrap;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    padding: 6px 36px 6px 6px;
+    padding: 6px 10px;
     max-width: 100%;
   }
   .nav-track::-webkit-scrollbar { display: none; }
+  
+  nav a {
+    margin: 0 8px;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  
+  /* Materials page Study Hub title */
+  header nav h2 {
+    font-size: 16px;
+    margin: 0 10px 0 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
 }
 
 /* ===== Main Section ===== */
