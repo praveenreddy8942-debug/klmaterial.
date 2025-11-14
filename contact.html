@@ -97,6 +97,37 @@
       min-width: 100px;
       color: #fff;
     }
+    
+    /* Mobile responsive styles */
+    @media (max-width: 600px) {
+      .contact-info li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px;
+      }
+      
+      .contact-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+      }
+      
+      .contact-info strong {
+        min-width: auto;
+        font-size: 14px;
+      }
+      
+      .contact-info a {
+        word-break: break-word;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      
+      .contact-info li:hover {
+        transform: translateX(0);
+      }
+    }
   </style>
 </head>
 <body>
