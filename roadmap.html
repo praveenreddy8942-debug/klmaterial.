@@ -44,11 +44,14 @@
 </head>
 <body>
   <header>
-    <h1>🎯 4-Year B.Tech Roadmap — Focus on Skills, Not Just Assignments</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="materials.html">Materials</a>
-      <a href="roadmap.html">🎯B.Tech Roadmap</a>
+      <div class="nav-track">
+        <a href="index.html">Home</a>
+        <a href="materials.html">Materials</a>
+        <a href="roadmap.html" class="active">Roadmap</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav-next" aria-label="More">›</button>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -195,6 +198,17 @@
   <button id="backToTop" title="Back to top">↑</button>
 
   <script>
+    // Mobile nav chevron scroll
+    (function(){
+      const track = document.querySelector('header nav .nav-track');
+      const next = document.querySelector('header nav .nav-next');
+      if (track && next) {
+        next.addEventListener('click', () => {
+          track.scrollBy({ left: 160, behavior: 'smooth' });
+        });
+      }
+    })();
+
     // Back to Top functionality
     const backToTopBtn = document.getElementById('backToTop');
     

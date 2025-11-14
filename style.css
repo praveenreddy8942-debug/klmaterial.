@@ -795,6 +795,47 @@ nav a:hover {
   transform: scale(1.05);
 }
 
+/* ===== Mobile Nav Scroll (iPhone) ===== */
+@media (max-width: 600px) {
+  header nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .nav-track {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 6px 36px 6px 6px;
+    max-width: 100%;
+  }
+  .nav-track::-webkit-scrollbar { display: none; }
+  .nav-next {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(0,0,0,0.35);
+    color: #00d4ff;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+  }
+  .nav-next:active { transform: translateY(-50%) scale(0.96); }
+}
+
 /* ===== Main Section ===== */
 main {
   padding: 40px 20px;
