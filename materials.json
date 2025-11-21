@@ -1,6 +1,7 @@
 {
   "Basic Electrical & Electronic Circuits (BEEC)": [
-    { "name": "BEEC_Intro_to_Circuits.pdf", "url": "sample-files/BEEC_Intro_to_Circuits.pdf" }
+    { "name": "BEEC_Intro_to_Circuits.pdf", "url": "sample-files/BEEC_Intro_to_Circuits.pdf" },
+    { "name": "BEEC Updated CO1 & CO2 Notes_unlocked.pdf", "url": "sample-files/BEEC_Updated_CO1_CO2_Notes_unlocked.pdf" }
   ],
   "Discrete Mathematics (DM)": [
     { "name": "DM_SetTheory_Notes.pdf", "url": "sample-files/DM_SetTheory_Notes.pdf" }
