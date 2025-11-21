@@ -62,20 +62,40 @@
     let allMaterials = {};
     let activeCategory = 'all';
 
-    function initSupabase() {
+    async function initSupabase() {
       try {
         supabaseClient = supabasejs.createClient(supabaseUrl, supabaseAnonKey);
-        loadFromSupabase();
+        const ok = await loadFromSupabase();
+        return ok;
       } catch (err) {
         console.error('Failed to initialize Supabase', err);
         showError('Failed to initialize Supabase', err);
+        return false;
       }
     }
 
-    // Kick off: try static then Supabase
+    // Kick off: try Supabase first, then static fallback
     (async function startLoader() {
-      const loaded = await tryLoadStatic();
-      if (!loaded) ensureSupabase();
+      let loaded = false;
+      if (typeof supabasejs !== 'undefined') {
+        loaded = await initSupabase();
+      } else {
+        // load supabase script dynamically and init
+        loaded = await new Promise((resolve) => {
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+          s.onload = async () => { resolve(await initSupabase()); };
+          s.onerror = () => { resolve(false); };
+          document.head.appendChild(s);
+        });
+      }
+
+      if (!loaded) {
+        const staticLoaded = await tryLoadStatic();
+        if (!staticLoaded) {
+          showError('No materials found in Supabase or /materials.json');
+        }
+      }
     })();
 
     function showError(message, details) {
@@ -88,6 +108,10 @@
         const { data, error } = await supabaseClient.from('materials').select('*').order('id', { ascending: true });
         if (error) throw error;
 
+        if (!data || data.length === 0) {
+          return false; // nothing to show
+        }
+
         // Group by subject
         const grouped = {};
         data.forEach(row => {
@@ -99,12 +123,10 @@
         allMaterials = grouped;
         setupFiltersAndSearch();
         displayMaterials(grouped);
+        return true;
       } catch (err) {
-        showError(err.message || 'Failed to load materials from Supabase', err);
-        if (typeof fallbackMaterials !== 'undefined') {
-          allMaterials = fallbackMaterials;
-          displayMaterials(fallbackMaterials);
-        }
+        console.warn('Failed to load materials from Supabase', err && err.message);
+        return false;
       }
     }
 
