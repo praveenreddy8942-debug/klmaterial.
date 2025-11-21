@@ -162,6 +162,32 @@
     const filterButtons = document.querySelectorAll(".filter-btn");
     const storageRef = ref(storage);
 
+    // Developer-friendly helpers
+    function showError(message, details) {
+      console.error(message, details);
+      materialsList.innerHTML = `
+        <div class="no-results" style="padding:18px;background:rgba(255,255,255,0.03);border-radius:10px;">
+          <p>⚠️ <strong>Error loading materials:</strong> ${message}</p>
+          <p style="opacity:0.85;font-size:0.95rem">Check the browser console for full details. Common causes: incorrect Firebase web config, wrong <code>storageBucket</code>, or Storage rules blocking reads.</p>
+          <p style="margin-top:8px;font-size:0.95rem">Quick checks:
+            <ul style="margin:6px 0 0 18px">
+              <li>Open Firebase Console → Project settings → Web app and confirm the config in <code>materials.html</code>.</li>
+              <li>Ensure your Storage bucket name looks like <code>PROJECT_ID.appspot.com</code> (not <code>*.firebasestorage.app</code>).</li>
+              <li>Temporarily set Storage rules to allow reads while testing (then secure them again).</li>
+            </ul>
+          </p>
+        </div>`;
+    }
+
+    // Optional developer fallback so the page remains usable if Firebase is unreachable
+    const useFallbackOnError = true;
+    const fallbackMaterials = {
+      "Sample Materials": [
+        { name: "BEEC_Intro_to_Circuits.pdf", url: "#" },
+        { name: "DM_SetTheory_Notes.pdf", url: "#" }
+      ]
+    };
+
     // Subject mapping (file name keywords → subject titles)
     const subjects = {
       "BEEC": "Basic Electrical & Electronic Circuits (BEEC)",
@@ -263,16 +289,30 @@
         const section = document.createElement("section");
         section.className = "material-box";
         section.innerHTML = `<h2>${subject}</h2>`;
-        grouped[subject].forEach((itemRef) => {
-          getDownloadURL(itemRef).then((url) => {
-            const name = itemRef.name.replace(/_/g, " ");
+        grouped[subject].forEach((item) => {
+          // Support two shapes: a StorageReference (itemRef) or a simple fallback object {name, url}
+          if (item && typeof item === 'object' && item.url) {
+            const name = item.name.replace(/_/g, " ");
             const link = document.createElement("a");
-            link.href = url;
+            link.href = item.url;
             link.textContent = "📄 " + name;
             link.target = "_blank";
             link.className = "download-btn";
             section.appendChild(link);
-          });
+          } else {
+            // Assume StorageReference
+            getDownloadURL(item).then((url) => {
+              const name = item.name.replace(/_/g, " ");
+              const link = document.createElement("a");
+              link.href = url;
+              link.textContent = "📄 " + name;
+              link.target = "_blank";
+              link.className = "download-btn";
+              section.appendChild(link);
+            }).catch(err => {
+              console.warn('Failed to get download URL for', item.name || item, err);
+            });
+          }
         });
         materialsList.appendChild(section);
       }
@@ -295,8 +335,13 @@
         displayMaterials(grouped);
       })
       .catch((error) => {
-        console.error(error);
-        materialsList.innerHTML = `<p class="no-results">⚠️ Error loading materials. Check Firebase config or rules.</p>`;
+        // Show a friendly error and console details
+        showError(error.message || 'Unknown error', error);
+        if (useFallbackOnError) {
+          console.info('Using fallback materials for development.');
+          allMaterials = fallbackMaterials;
+          displayMaterials(fallbackMaterials);
+        }
       });
   </script>
 
