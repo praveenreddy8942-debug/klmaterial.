@@ -1,11 +1,17 @@
 {
   "Basic Electrical & Electronic Circuits (BEEC)": [
-    { "name": "BEEC_Intro_to_Circuits.pdf", "url": "https://raw.githubusercontent.com/praveenreddy8942-debug/klmaterial/main/sample-files/BEEC_Intro_to_Circuits.pdf" }
+    { "name": "BEEC_Intro_to_Circuits.pdf", "url": "sample-files/BEEC_Intro_to_Circuits.pdf" }
   ],
   "Discrete Mathematics (DM)": [
-    { "name": "DM_SetTheory_Notes.pdf", "url": "https://raw.githubusercontent.com/praveenreddy8942-debug/klmaterial/main/sample-files/DM_SetTheory_Notes.pdf" }
+    { "name": "DM_SetTheory_Notes.pdf", "url": "sample-files/DM_SetTheory_Notes.pdf" }
+  ],
+  "Data Structures (DSD)": [
+    { "name": "DSD_Data_Structures_Notes.pdf", "url": "sample-files/DSD_Data_Structures_Notes.pdf" }
+  ],
+  "Problem Solving & C (PSC)": [
+    { "name": "PSC_Problem_Solving_Concepts.pdf", "url": "sample-files/PSC_Problem_Solving_Concepts.pdf" }
   ],
   "Other Materials": [
-    { "name": "Welcome.txt", "url": "https://raw.githubusercontent.com/praveenreddy8942-debug/klmaterial/main/sample-files/Welcome.txt" }
+    { "name": "Welcome.txt", "url": "sample-files/Welcome.txt" }
   ]
 }
