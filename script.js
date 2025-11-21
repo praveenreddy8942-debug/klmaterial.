@@ -6,13 +6,13 @@ import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.co
 
 // Firebase configuration (provided)
 const firebaseConfig = {
-  apiKey: "AIzaSyBCLxW9w21eowVJp2anRL1mlhu48Kaz8ls",
-  authDomain: "cse-materials.firebaseapp.com",
-  projectId: "cse-materials",
-  storageBucket: "cse-materials.firebasestorage.app",
-  messagingSenderId: "543101747849",
-  appId: "1:543101747849:web:d8b71de79e94f84af7fc58",
-  measurementId: "G-NZ0SERPS7L"
+  apiKey: "AIzaSyDUcVpkiBMd_53FHD4j77pN-MuNuPAv6aU",
+  authDomain: "klmaterials.firebaseapp.com",
+  projectId: "klmaterials",
+  storageBucket: "klmaterials.firebasestorage.app",
+  messagingSenderId: "772530551582",
+  appId: "1:772530551582:web:ba87999d6602b49787a70f",
+  measurementId: "G-JFPKCY2715"
 };
 
 // Initialize Firebase
