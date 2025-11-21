@@ -22,8 +22,28 @@
     const supabaseUrl = "https://bxeismfbqgsijzzkjrbp.supabase.co";
     const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4ZWlzbWZicWdzaWp6emtqcmJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM2NTY4NzAsImV4cCI6MjA3OTIzMjg3MH0.LPo0253KUAipJ2dKWHN-RKjEnXJnvrJGQ_3ZMw0Dfw8";
 
+    // Try loading a static /materials.json first (fast, no keys). If it
+    // exists and contains data, use it. Otherwise fall back to Supabase.
+    async function tryLoadStatic() {
+      try {
+        const res = await fetch('/materials.json', { cache: 'no-cache' });
+        if (!res.ok) return false;
+        const data = await res.json();
+        if (data && Object.keys(data).length > 0) {
+          allMaterials = data;
+          setupFiltersAndSearch();
+          displayMaterials(allMaterials);
+          console.info('Loaded materials from /materials.json');
+          return true;
+        }
+      } catch (err) {
+        // ignore and fallback
+      }
+      return false;
+    }
+
     // load supabase client if not already present
-    (function ensureSupabase() {
+    function ensureSupabase() {
       if (typeof supabasejs === 'undefined') {
         const s = document.createElement('script');
         s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
@@ -32,7 +52,7 @@
       } else {
         initSupabase();
       }
-    })();
+    }
 
     let supabaseClient;
     const materialsList = document.getElementById("materials-list");
@@ -51,6 +71,12 @@
         showError('Failed to initialize Supabase', err);
       }
     }
+
+    // Kick off: try static then Supabase
+    (async function startLoader() {
+      const loaded = await tryLoadStatic();
+      if (!loaded) ensureSupabase();
+    })();
 
     function showError(message, details) {
       console.error(message, details);
